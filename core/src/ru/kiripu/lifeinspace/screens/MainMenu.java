@@ -4,6 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
@@ -29,6 +32,7 @@ public class MainMenu implements Screen
     private Animation heroAnim;
     private Image heroImage;
     private AnimatedSprite heroAnimSprite;
+    private InputListener inputListener;
 
     @Override
     public void show()
@@ -77,6 +81,26 @@ public class MainMenu implements Screen
         table.add(twoPlayersButton).padTop(20).row();
         table.add(topSurvivors).padTop(20).row();
         stage.addActor(table);
+
+        inputListener = new InputListener()
+        {
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
+            {
+                return true;
+            }
+
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button)
+            {
+                Actor targetActor = event.getTarget();
+                if (targetActor == onePlayerButton) System.out.println("onePlayerButton");
+                else if (targetActor == twoPlayersButton) System.out.println("twoPlayersButton");
+                else if (targetActor == topSurvivors) System.out.println("topSurvivors");
+            }
+        };
+
+        onePlayerButton.addListener(inputListener);
+        twoPlayersButton.addListener(inputListener);
+        topSurvivors.addListener(inputListener);
     }
 
     @Override
