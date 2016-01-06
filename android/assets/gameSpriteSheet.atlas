@@ -1,5 +1,115 @@
 
 gameSpriteSheet.png
+size: 512,16
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+effects/oxygenRay
+  rotate: false
+  xy: 2, 2
+  size: 29, 12
+  orig: 29, 12
+  offset: 0, 0
+  index: 1
+effects/oxygenRay
+  rotate: false
+  xy: 33, 2
+  size: 29, 12
+  orig: 29, 12
+  offset: 0, 0
+  index: 2
+effects/oxygenRay
+  rotate: false
+  xy: 64, 2
+  size: 29, 12
+  orig: 29, 12
+  offset: 0, 0
+  index: 3
+effects/oxygenRay
+  rotate: false
+  xy: 95, 2
+  size: 29, 12
+  orig: 29, 12
+  offset: 0, 0
+  index: 4
+effects/oxygenRay
+  rotate: false
+  xy: 126, 2
+  size: 29, 12
+  orig: 29, 12
+  offset: 0, 0
+  index: 5
+effects/oxygenRay
+  rotate: false
+  xy: 157, 2
+  size: 29, 12
+  orig: 29, 12
+  offset: 0, 0
+  index: 6
+effects/oxygenRay
+  rotate: false
+  xy: 188, 2
+  size: 29, 12
+  orig: 29, 12
+  offset: 0, 0
+  index: 7
+effects/oxygenRay
+  rotate: false
+  xy: 219, 2
+  size: 29, 12
+  orig: 29, 12
+  offset: 0, 0
+  index: 8
+effects/oxygenRay
+  rotate: false
+  xy: 250, 2
+  size: 29, 12
+  orig: 29, 12
+  offset: 0, 0
+  index: 9
+
+gameSpriteSheet2.png
+size: 256,64
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+gameObjects/asteroid
+  rotate: false
+  xy: 2, 2
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: 3
+gameObjects/asteroid
+  rotate: false
+  xy: 59, 12
+  size: 54, 45
+  orig: 54, 45
+  offset: 0, 0
+  index: 2
+gameObjects/asteroid
+  rotate: false
+  xy: 160, 13
+  size: 39, 44
+  orig: 39, 44
+  offset: 0, 0
+  index: 1
+gameObjects/asteroid
+  rotate: false
+  xy: 201, 27
+  size: 35, 30
+  orig: 35, 30
+  offset: 0, 0
+  index: 4
+gameObjects/safeCapsule
+  rotate: false
+  xy: 115, 12
+  size: 43, 45
+  orig: 43, 45
+  offset: 0, 0
+  index: -1
+
+gameSpriteSheet3.png
 size: 1024,256
 format: RGBA8888
 filter: Nearest,Nearest
@@ -565,7 +675,7 @@ hero/idle
   offset: 0, 0
   index: 79
 
-gameSpriteSheet2.png
+gameSpriteSheet4.png
 size: 1024,256
 format: RGBA8888
 filter: Nearest,Nearest
