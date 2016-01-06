@@ -88,7 +88,11 @@ public class MainMenu implements Screen
             public void clicked(InputEvent event, float x, float y)
             {
                 Actor targetActor = event.getTarget();
-                if (targetActor == onePlayerButton) System.out.println("onePlayerButton");
+                if (targetActor == onePlayerButton)
+                {
+                    System.out.println("onePlayerButton");
+                    Main.game.setScreen(new GameWorldScreen());
+                }
                 else if (targetActor == twoPlayersButton) System.out.println("twoPlayersButton");
                 else if (targetActor == topSurvivors) System.out.println("topSurvivors");
             }

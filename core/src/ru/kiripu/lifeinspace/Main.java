@@ -12,10 +12,11 @@ import ru.kiripu.lifeinspace.screens.MainMenu;
 
 public class Main extends Game
 {
+	public static Game game;
 	public static int width;
 	public static int height;
 	public static OrthographicCamera camera;
-	public  static AssetsController assetsController;
+	public static AssetsController assetsController;
 
 	private SpriteBatch batch;
 	private Texture backgroundImage;
@@ -30,6 +31,7 @@ public class Main extends Game
 		camera = new OrthographicCamera(width, height);
 		camera.translate(width * 0.5f, height * 0.5f);
 		camera.update();
+		game = this;
 
 		assetsController = new AssetsController();
 		assetsController.init();
