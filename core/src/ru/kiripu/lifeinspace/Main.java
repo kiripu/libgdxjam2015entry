@@ -3,6 +3,7 @@ package ru.kiripu.lifeinspace;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,7 +12,11 @@ import ru.kiripu.lifeinspace.screens.MainMenu;
 
 public class Main extends Game
 {
+	public static int width;
+	public static int height;
+	public static OrthographicCamera camera;
 	public  static AssetsController assetsController;
+
 	private SpriteBatch batch;
 	private Texture backgroundImage;
 	private ParticleEffect pe;
@@ -20,6 +25,12 @@ public class Main extends Game
 	@Override
 	public void create ()
 	{
+		width = Gdx.graphics.getWidth();
+		height = Gdx.graphics.getHeight();
+		camera = new OrthographicCamera(width, height);
+		camera.translate(width * 0.5f, height * 0.5f);
+		camera.update();
+
 		assetsController = new AssetsController();
 		assetsController.init();
 
