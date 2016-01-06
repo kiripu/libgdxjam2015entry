@@ -49,6 +49,9 @@ public class Main extends Game
 	@Override
 	public void render ()
 	{
+		camera.update();
+		batch.setProjectionMatrix(camera.combined);
+
 		float deltaTime = Gdx.graphics.getDeltaTime();
 		float fastForwardTime = 2f;
 		if ((curTime += deltaTime) < fastForwardTime)

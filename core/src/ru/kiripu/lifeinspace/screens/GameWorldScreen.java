@@ -1,15 +1,20 @@
 package ru.kiripu.lifeinspace.screens;
 
 import com.badlogic.gdx.Screen;
+import ru.kiripu.lifeinspace.Main;
+import ru.kiripu.lifeinspace.world.GameWorld;
 
 /**
  * Created by kiripu on 06.01.2016.
  */
 public class GameWorldScreen implements Screen {
 
+    private final GameWorld world;
+
     public GameWorldScreen()
     {
-
+        world = new GameWorld();
+        world.init();
     }
 
     @Override
@@ -19,6 +24,7 @@ public class GameWorldScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        world.update(delta, Main.camera);
 
     }
 
