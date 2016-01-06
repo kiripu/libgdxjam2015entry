@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Align;
 import net.dermetfan.gdx.graphics.g2d.AnimatedSprite;
@@ -82,14 +83,9 @@ public class MainMenu implements Screen
         table.add(topSurvivors).padTop(20).row();
         stage.addActor(table);
 
-        inputListener = new InputListener()
+        inputListener = new ClickListener()
         {
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button)
-            {
-                return true;
-            }
-
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button)
+            public void clicked(InputEvent event, float x, float y)
             {
                 Actor targetActor = event.getTarget();
                 if (targetActor == onePlayerButton) System.out.println("onePlayerButton");
