@@ -73,34 +73,34 @@ size: 256,64
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-gameObjects/asteroid
-  rotate: false
-  xy: 2, 2
-  size: 55, 55
-  orig: 55, 55
-  offset: 0, 0
-  index: 3
-gameObjects/asteroid
-  rotate: false
-  xy: 59, 12
-  size: 54, 45
-  orig: 54, 45
-  offset: 0, 0
-  index: 2
-gameObjects/asteroid
+gameObjects/asteroid_01
   rotate: false
   xy: 160, 13
   size: 39, 44
   orig: 39, 44
   offset: 0, 0
-  index: 1
-gameObjects/asteroid
+  index: -1
+gameObjects/asteroid_02
+  rotate: false
+  xy: 59, 12
+  size: 54, 45
+  orig: 54, 45
+  offset: 0, 0
+  index: -1
+gameObjects/asteroid_03
+  rotate: false
+  xy: 2, 2
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1
+gameObjects/asteroid_04
   rotate: false
   xy: 201, 27
   size: 35, 30
   orig: 35, 30
   offset: 0, 0
-  index: 4
+  index: -1
 gameObjects/safeCapsule
   rotate: false
   xy: 115, 12
