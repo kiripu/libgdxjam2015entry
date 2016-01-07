@@ -15,4 +15,10 @@ public class DrawableComponent implements Component, Pool.Poolable
     public void reset() {
 
     }
+
+    public DrawableComponent initWithSpriteName(String spriteName)
+    {
+//        drawable = Main.assetsController.getTextureAtlas().createSprite(spriteName);
+        return this;
+    }
 }

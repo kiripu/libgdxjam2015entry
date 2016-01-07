@@ -18,7 +18,7 @@ public class Main extends Game
 	public static OrthographicCamera camera;
 	public static AssetsController assetsController;
 
-	private SpriteBatch batch;
+	public static SpriteBatch batch;
 	private Texture backgroundImage;
 	private ParticleEffect pe;
 	private float curTime = 0;
@@ -61,15 +61,16 @@ public class Main extends Game
 		}
 		else pe.update(deltaTime);
 
-		Gdx.gl.glClearColor(1, 0, 0, 1);
+		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		batch.draw(backgroundImage, 0, 0);
 		pe.draw(batch);
+		super.render();
 		batch.end();
+
 
 		if (pe.isComplete()) pe.reset();
 
-		super.render();
 	}
 }
