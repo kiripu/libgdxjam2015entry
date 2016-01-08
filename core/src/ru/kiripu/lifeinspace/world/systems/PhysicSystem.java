@@ -102,8 +102,8 @@ public class PhysicSystem extends EntitySystem implements EntityListener
         bodyEditorLoader.attachFixture(physic.body, physic.bodyName, fd, sprite.getWidth());
         transform.origin = bodyEditorLoader.getOrigin(physic.bodyName, sprite.getWidth()).cpy();
 
-        physic.body.setLinearVelocity(300f, 0);
-        physic.body.setAngularVelocity(15);
+//        physic.body.setLinearVelocity(300f, 0);
+//        physic.body.setAngularVelocity(0.3f);
     }
 
     @Override

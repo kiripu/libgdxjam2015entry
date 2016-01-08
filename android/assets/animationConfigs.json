@@ -1,0 +1,10 @@
+{
+  "hero":
+  {
+    "idle": "hero/idle"
+  },
+  "oxygenRay":
+  {
+    "idle": "effects/oxygenRay"
+  }
+}
