@@ -50,9 +50,9 @@ public class RenderSystem extends EntitySystem implements EntityListener
             entity = entities.get(i);
             transform = ComponentMappers.TRANSFORM.get(entity);
             sprite = ComponentMappers.SPRITE.get(entity).sprite;
-            sprite.setPosition(transform.position.x, transform.position.y);
-            sprite.setOrigin(transform.origin.x, transform.origin.y);
-            sprite.setRotation(transform.rotation);
+            sprite.setOrigin(transform.getOriginX(), transform.getOriginY());
+            sprite.setPosition(transform.getPositionX(), transform.getPositionY());
+            sprite.setRotation(transform.getRotation());
             sprite.draw(Main.batch);
         }
     }

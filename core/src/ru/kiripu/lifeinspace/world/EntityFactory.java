@@ -31,7 +31,9 @@ public class EntityFactory
                 init(Input.Keys.D, Input.Keys.A, Input.Keys.W, 1f, 10000));
 
         Entity jetpack = engine.createEntity();
-        jetpack.add(player.getComponent(TransformComponent.class));
+        TransformComponent transformComponent = engine.createComponent(TransformComponent.class).init(35, 18, 0);
+        transformComponent.setParent(player.getComponent(TransformComponent.class));
+        jetpack.add(transformComponent);
         jetpack.add(engine.createComponent(AnimationComponent.class).init("oxygenRay", "idle"));
         jetpack.add(engine.createComponent(SpriteComponent.class).init(jetpack.getComponent(AnimationComponent.class)));
 
