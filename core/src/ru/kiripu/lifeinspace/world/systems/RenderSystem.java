@@ -3,10 +3,11 @@ package ru.kiripu.lifeinspace.world.systems;
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 import ru.kiripu.lifeinspace.Main;
 import ru.kiripu.lifeinspace.world.ComponentMappers;
-import ru.kiripu.lifeinspace.world.components.SpriteComponent;
 import ru.kiripu.lifeinspace.world.components.TransformComponent;
+import ru.kiripu.lifeinspace.world.components.ViewComponent;
 
 /**
  * Created by kiripu on 06.01.2016.
@@ -19,7 +20,7 @@ public class RenderSystem extends EntitySystem implements EntityListener
 
     public RenderSystem()
     {
-        family = Family.all(SpriteComponent.class, TransformComponent.class).get();
+        family = Family.all(TransformComponent.class, ViewComponent.class).get();
     }
 
     @Override
@@ -45,15 +46,21 @@ public class RenderSystem extends EntitySystem implements EntityListener
         Entity entity;
         TransformComponent transform;
         Sprite sprite;
+        Vector2 offset;
+        ViewComponent viewComponent;
         for (int i = 0; i < length; ++i)
         {
             entity = entities.get(i);
             transform = ComponentMappers.TRANSFORM.get(entity);
-            sprite = ComponentMappers.SPRITE.get(entity).sprite;
-            sprite.setOrigin(transform.getOriginX(), transform.getOriginY());
-            sprite.setPosition(transform.getPositionX(), transform.getPositionY());
-            sprite.setRotation(transform.getRotation());
-            sprite.draw(Main.batch);
+            viewComponent = ComponentMappers.VIEW.get(entity);
+            for (int j = 0; j < viewComponent.sprites.size; j++)
+            {
+                sprite = viewComponent.sprites.get(j);
+                offset = viewComponent.offset.get(j);
+                sprite.setPosition(transform.getPositionX(offset), transform.getPositionY(offset));
+                sprite.setRotation(transform.getRotation());
+                sprite.draw(Main.batch);
+            }
         }
     }
 

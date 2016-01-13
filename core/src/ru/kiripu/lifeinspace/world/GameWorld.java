@@ -16,7 +16,6 @@ public class GameWorld
     public void init()
     {
         engine = new PooledEngine(0, 50, 0, 50);
-//        engine.addSystem(new AnimationSystem());
         engine.addSystem(new RenderSystem());
         engine.addSystem(new ControlSystem());
         engine.addSystem(new PhysicSystem());

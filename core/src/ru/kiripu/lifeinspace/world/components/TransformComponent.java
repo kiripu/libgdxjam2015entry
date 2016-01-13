@@ -13,7 +13,6 @@ public class TransformComponent implements Component, Pool.Poolable
     public Vector2 position;
     public Vector2 origin;
     public float rotation = 0f;
-    public TransformComponent parent;
 
     public TransformComponent init(float x, float y, float rot)
     {
@@ -23,43 +22,27 @@ public class TransformComponent implements Component, Pool.Poolable
         return this;
     }
 
-    public void setParent(TransformComponent parent)
+    public float getPositionX(Vector2 offset)
     {
-        this.parent = parent;
-    }
-
-    public float getPositionX()
-    {
-        if (parent != null)
+        if (offset != null)
         {
-            return (float) (parent.position.x + position.len() * Math.cos(parent.rotation * MathUtils.degreesToRadians + position.angleRad()));
+            return (float) (position.x + offset.len() * Math.cos(rotation * MathUtils.degreesToRadians + offset.angleRad()));
         }
         else return position.x;
     }
 
-    public float getPositionY()
+    public float getPositionY(Vector2 offset)
     {
-        if (parent != null)
+        if (offset != null)
         {
-            return (float) (parent.position.y + position.len() * Math.sin(parent.rotation * MathUtils.degreesToRadians + position.angleRad()));
+            return (float) (position.y + offset.len() * Math.sin(rotation * MathUtils.degreesToRadians + offset.angleRad()));
         }
         else return position.y;
     }
 
-    public float getOriginX()
-    {
-        return origin.x;
-    }
-
-    public float getOriginY()
-    {
-        return origin.y;
-    }
-
     public float getRotation()
     {
-        if (parent != null) return rotation + parent.rotation;
-        else return rotation;
+        return rotation;
     }
 
     @Override
@@ -68,6 +51,5 @@ public class TransformComponent implements Component, Pool.Poolable
         position.setZero();
         origin.setZero();
         rotation = 0f;
-        parent = null;
     }
 }

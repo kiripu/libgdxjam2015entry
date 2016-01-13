@@ -86,7 +86,7 @@ public class PhysicSystem extends EntitySystem implements EntityListener
     {
         TransformComponent transform = ComponentMappers.TRANSFORM.get(entity);
         PhysicComponent physic = ComponentMappers.PHYSIC.get(entity);
-        Sprite sprite = ComponentMappers.SPRITE.get(entity).sprite;
+        Sprite sprite = ComponentMappers.VIEW.get(entity).getMainSprite();
 
         BodyDef bd = new BodyDef();
         bd.position.set(transform.position);
@@ -101,9 +101,6 @@ public class PhysicSystem extends EntitySystem implements EntityListener
         physic.body = world.createBody(bd);
         bodyEditorLoader.attachFixture(physic.body, physic.bodyName, fd, sprite.getWidth());
         transform.origin = bodyEditorLoader.getOrigin(physic.bodyName, sprite.getWidth()).cpy();
-
-//        physic.body.setLinearVelocity(300f, 0);
-//        physic.body.setAngularVelocity(0.3f);
     }
 
     @Override
