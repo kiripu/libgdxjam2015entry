@@ -31,7 +31,7 @@ public class ObjectViewCreator
 
         AnimatedSprite sprite = new AnimatedSprite(AnimationStorage.getInstance().getAnimation("oxygenRay", "idle"));
         sprite.setOrigin(0, 0);
-        addDataToViewComponent(viewComponent, sprite, true, new Vector2(35, 18));
+        addDataToViewComponent(viewComponent, sprite, false, new Vector2(35, 18));
 
         sprite = new AnimatedSprite(AnimationStorage.getInstance().getAnimation("hero", "idle"));
         sprite.setOrigin(0, 0);

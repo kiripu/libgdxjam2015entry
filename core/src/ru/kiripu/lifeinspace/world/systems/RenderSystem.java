@@ -45,9 +45,10 @@ public class RenderSystem extends EntitySystem implements EntityListener
         int length = entities.size();
         Entity entity;
         TransformComponent transform;
-        Sprite sprite;
-        Vector2 offset;
         ViewComponent viewComponent;
+        Sprite sprite;
+        Boolean isSpriteVisible;
+        Vector2 offset;
         for (int i = 0; i < length; ++i)
         {
             entity = entities.get(i);
@@ -55,11 +56,15 @@ public class RenderSystem extends EntitySystem implements EntityListener
             viewComponent = ComponentMappers.VIEW.get(entity);
             for (int j = 0; j < viewComponent.sprites.size; j++)
             {
-                sprite = viewComponent.sprites.get(j);
-                offset = viewComponent.offset.get(j);
-                sprite.setPosition(transform.getPositionX(offset), transform.getPositionY(offset));
-                sprite.setRotation(transform.getRotation());
-                sprite.draw(Main.batch);
+                isSpriteVisible = viewComponent.spritesVisibility.get(j);
+                if (isSpriteVisible)
+                {
+                    sprite = viewComponent.sprites.get(j);
+                    offset = viewComponent.offset.get(j);
+                    sprite.setPosition(transform.getPositionX(offset), transform.getPositionY(offset));
+                    sprite.setRotation(transform.getRotation());
+                    sprite.draw(Main.batch);
+                }
             }
         }
     }
