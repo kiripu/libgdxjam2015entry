@@ -22,7 +22,7 @@ public class GameWorld
         engine.addSystem(new TurnControlSystem());
         engine.addSystem(new PhysicSystem());
         EntityFactory.createAsteroid(engine, GameObjectType.ASTEROID_3, 500, 200, 35);
-        EntityFactory.createAsteroid(engine, GameObjectType.ASTEROID_1, 150, 200, 0);
+        EntityFactory.createSafeCapsule(engine, 150, 200, 0);
         EntityFactory.createPlayer(engine, 150, 400, 45);
     }
 
