@@ -12,7 +12,7 @@ import ru.kiripu.lifeinspace.world.components.ViewComponent;
  */
 public class ObjectViewCreator
 {
-    public static ViewComponent createAsteroidView(PooledEngine engine, String type)
+    public static ViewComponent createSpriteView(PooledEngine engine, String type)
     {
         ViewComponent viewComponent = engine.createComponent(ViewComponent.class).init();
 

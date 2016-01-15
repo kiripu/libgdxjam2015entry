@@ -16,7 +16,7 @@ public class EntityFactory
         Entity entity = engine.createEntity();
         entity.add(engine.createComponent(TransformComponent.class).init(posX, posY, rot));
         entity.add(engine.createComponent(PhysicComponent.class).init(gameObjectType));
-        entity.add(ObjectViewCreator.createAsteroidView(engine, gameObjectType));
+        entity.add(ObjectViewCreator.createSpriteView(engine, gameObjectType));
         engine.addEntity(entity);
     }
 
@@ -37,7 +37,7 @@ public class EntityFactory
         Entity entity = engine.createEntity();
         entity.add(engine.createComponent(TransformComponent.class).init(posX, posY, rot));
         entity.add(engine.createComponent(PhysicComponent.class).init(GameObjectType.SAFE_CAPSULE));
-        entity.add(ObjectViewCreator.createAsteroidView(engine, GameObjectType.SAFE_CAPSULE));
+        entity.add(ObjectViewCreator.createSpriteView(engine, GameObjectType.SAFE_CAPSULE));
         engine.addEntity(entity);
     }
 }
