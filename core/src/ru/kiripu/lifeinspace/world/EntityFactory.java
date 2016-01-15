@@ -31,4 +31,13 @@ public class EntityFactory
         entity.add(engine.createComponent(EnergyComponent.class).init(100, 5, 20, 10, 10));
         engine.addEntity(entity);
     }
+
+    public static void createSafeCapsule(PooledEngine engine, float posX, float posY, float rot)
+    {
+        Entity entity = engine.createEntity();
+        entity.add(engine.createComponent(TransformComponent.class).init(posX, posY, rot));
+        entity.add(engine.createComponent(PhysicComponent.class).init(GameObjectType.SAFE_CAPSULE));
+        entity.add(ObjectViewCreator.createAsteroidView(engine, GameObjectType.SAFE_CAPSULE));
+        engine.addEntity(entity);
+    }
 }
