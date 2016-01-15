@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import net.dermetfan.gdx.graphics.g2d.AnimatedSprite;
 import ru.kiripu.lifeinspace.Main;
+import ru.kiripu.lifeinspace.enums.GameObjectType;
+import ru.kiripu.lifeinspace.world.components.TypeComponent;
 import ru.kiripu.lifeinspace.world.components.ViewComponent;
 
 /**
@@ -12,11 +14,23 @@ import ru.kiripu.lifeinspace.world.components.ViewComponent;
  */
 public class ObjectViewCreator
 {
-    public static ViewComponent createSpriteView(PooledEngine engine, String type)
+    public static ViewComponent createSpriteViewComponent(PooledEngine engine, TypeComponent typeComponent)
     {
         ViewComponent viewComponent = engine.createComponent(ViewComponent.class).init();
+        String spriteName = "gameObjects/";
 
-        Sprite sprite = Main.assetsController.getTextureAtlas().createSprite("gameObjects/" + type);
+        switch (typeComponent.type)
+        {
+            case GameObjectType.TYPE_ASTEROID:
+                spriteName += "asteroid_0" + typeComponent.variance;
+                break;
+            case GameObjectType.TYPE_SAFE_CAPSULE:
+                spriteName += "safeCapsule";
+                break;
+
+        }
+
+        Sprite sprite = Main.assetsController.getTextureAtlas().createSprite(spriteName);
         sprite.setOrigin(0, 0);
 
         addDataToViewComponent(viewComponent, sprite, true, null);
@@ -25,7 +39,7 @@ public class ObjectViewCreator
         return viewComponent;
     }
 
-    public static ViewComponent createPlayerView(PooledEngine engine, String type)
+    public static ViewComponent createPlayerView(PooledEngine engine, TypeComponent typeComponent)
     {
         ViewComponent viewComponent = engine.createComponent(ViewComponent.class).init();
 

@@ -10,18 +10,16 @@ import com.badlogic.gdx.utils.Pool;
 public class PhysicComponent implements Component, Pool.Poolable
 {
     public Body body;
-    public String bodyName;
 
     @Override
     public void reset()
     {
-        bodyName = null;
         body = null;
     }
 
-    public PhysicComponent init(String bodyName)
+    public PhysicComponent init(Body body)
     {
-        this.bodyName = bodyName;
+        this.body = body;
         return this;
     }
 }

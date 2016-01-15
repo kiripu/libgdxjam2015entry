@@ -5,10 +5,8 @@ package ru.kiripu.lifeinspace.enums;
  */
 public class GameObjectType
 {
-    public static final String ASTEROID_1 = "asteroid_01";
-    public static final String ASTEROID_2 = "asteroid_02";
-    public static final String ASTEROID_3 = "asteroid_03";
-    public static final String ASTEROID_4 = "asteroid_04";
-    public static final String SAFE_CAPSULE = "safeCapsule";
-    public static final String HERO = "hero";
+    public static final int TYPE_EMPTY = -1;
+    public static final int TYPE_PLAYER = 0;
+    public static final int TYPE_ASTEROID = 1;
+    public static final int TYPE_SAFE_CAPSULE = 2;
 }

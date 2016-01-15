@@ -4,15 +4,20 @@ import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Box2D;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
 import ru.kiripu.lifeinspace.Main;
 import ru.kiripu.lifeinspace.world.BodyEditorLoader;
 import ru.kiripu.lifeinspace.world.ComponentMappers;
+import ru.kiripu.lifeinspace.world.PhysicObjectCreator;
 import ru.kiripu.lifeinspace.world.components.PhysicComponent;
 import ru.kiripu.lifeinspace.world.components.TransformComponent;
+import ru.kiripu.lifeinspace.world.components.TypeComponent;
+import ru.kiripu.lifeinspace.world.components.ViewComponent;
 
 /**
  * Created by kiripu on 06.01.2016.
@@ -84,23 +89,15 @@ public class PhysicSystem extends EntitySystem implements EntityListener
     @Override
     public void entityAdded(Entity entity)
     {
-        TransformComponent transform = ComponentMappers.TRANSFORM.get(entity);
-        PhysicComponent physic = ComponentMappers.PHYSIC.get(entity);
-        Sprite sprite = ComponentMappers.VIEW.get(entity).getMainSprite();
+        TypeComponent typeComponent = ComponentMappers.TYPE.get(entity);
+        TransformComponent transformComponent = ComponentMappers.TRANSFORM.get(entity);
+        ViewComponent viewComponent = ComponentMappers.VIEW.get(entity);
+        PhysicComponent physicComponent = ComponentMappers.PHYSIC.get(entity);
 
-        BodyDef bd = new BodyDef();
-        bd.position.set(transform.position);
-        bd.type = BodyDef.BodyType.DynamicBody;
-        bd.angle = transform.rotation * MathUtils.degreesToRadians;
-
-        FixtureDef fd = new FixtureDef();
-        fd.density = 1;
-        fd.friction = 0.5f;
-        fd.restitution = 0.3f;
-
-        physic.body = world.createBody(bd);
-        bodyEditorLoader.attachFixture(physic.body, physic.bodyName, fd, sprite.getWidth());
-        transform.origin = bodyEditorLoader.getOrigin(physic.bodyName, sprite.getWidth()).cpy();
+        Body body = PhysicObjectCreator.createBodyByTypeComponent(
+                world, typeComponent, viewComponent.getMainSprite().getWidth(),
+                transformComponent.position, transformComponent.rotation);
+        physicComponent.init(body);
     }
 
     @Override

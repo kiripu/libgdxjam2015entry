@@ -1,7 +1,6 @@
 package ru.kiripu.lifeinspace.world;
 
 import com.badlogic.ashley.core.PooledEngine;
-import ru.kiripu.lifeinspace.enums.GameObjectType;
 import ru.kiripu.lifeinspace.world.systems.JetpackControlSystem;
 import ru.kiripu.lifeinspace.world.systems.PhysicSystem;
 import ru.kiripu.lifeinspace.world.systems.RenderSystem;
@@ -21,9 +20,9 @@ public class GameWorld
         engine.addSystem(new JetpackControlSystem());
         engine.addSystem(new TurnControlSystem());
         engine.addSystem(new PhysicSystem());
-        EntityFactory.createAsteroid(engine, GameObjectType.ASTEROID_3, 500, 200, 35);
+        EntityFactory.createAsteroid(engine, 1, 100, 200, 35);
         EntityFactory.createSafeCapsule(engine, 150, 200, 0);
-        EntityFactory.createPlayer(engine, 150, 400, 45);
+        EntityFactory.createPlayer(engine, 200, 250, 90);
     }
 
     public void update(float deltaTime)
