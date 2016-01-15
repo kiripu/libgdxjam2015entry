@@ -2,9 +2,10 @@ package ru.kiripu.lifeinspace.world;
 
 import com.badlogic.ashley.core.PooledEngine;
 import ru.kiripu.lifeinspace.enums.GameObjectType;
-import ru.kiripu.lifeinspace.world.systems.ControlSystem;
+import ru.kiripu.lifeinspace.world.systems.JetpackControlSystem;
 import ru.kiripu.lifeinspace.world.systems.PhysicSystem;
 import ru.kiripu.lifeinspace.world.systems.RenderSystem;
+import ru.kiripu.lifeinspace.world.systems.TurnControlSystem;
 
 /**
  * Created by kiripu on 06.01.2016.
@@ -17,7 +18,8 @@ public class GameWorld
     {
         engine = new PooledEngine(0, 50, 0, 50);
         engine.addSystem(new RenderSystem());
-        engine.addSystem(new ControlSystem());
+        engine.addSystem(new JetpackControlSystem());
+        engine.addSystem(new TurnControlSystem());
         engine.addSystem(new PhysicSystem());
         EntityFactory.createAsteroid(engine, GameObjectType.ASTEROID_3, 500, 200, 35);
         EntityFactory.createAsteroid(engine, GameObjectType.ASTEROID_1, 150, 200, 0);
