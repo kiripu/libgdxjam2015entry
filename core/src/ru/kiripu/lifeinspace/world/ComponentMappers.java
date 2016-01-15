@@ -15,5 +15,6 @@ public class ComponentMappers
     public static final ComponentMapper<EnergyComponent> ENERGY = ComponentMapper.getFor(EnergyComponent.class);
     public static final ComponentMapper<JetpackControlComponent> JETPACK = ComponentMapper.getFor(JetpackControlComponent.class);
     public static final ComponentMapper<TypeComponent> TYPE = ComponentMapper.getFor(TypeComponent.class);
+    public static final ComponentMapper<CollisionComponent> COLLISION = ComponentMapper.getFor(CollisionComponent.class);
 
 }

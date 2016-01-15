@@ -6,23 +6,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.Box2D;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.*;
 import ru.kiripu.lifeinspace.Main;
 import ru.kiripu.lifeinspace.world.BodyEditorLoader;
 import ru.kiripu.lifeinspace.world.ComponentMappers;
 import ru.kiripu.lifeinspace.world.PhysicObjectCreator;
-import ru.kiripu.lifeinspace.world.components.PhysicComponent;
-import ru.kiripu.lifeinspace.world.components.TransformComponent;
-import ru.kiripu.lifeinspace.world.components.TypeComponent;
-import ru.kiripu.lifeinspace.world.components.ViewComponent;
+import ru.kiripu.lifeinspace.world.components.*;
 
 /**
  * Created by kiripu on 06.01.2016.
  */
-public class PhysicSystem extends EntitySystem implements EntityListener
+public class PhysicSystem extends EntitySystem implements EntityListener, ContactListener
 {
     private Engine engine;
     private BodyEditorLoader bodyEditorLoader;
@@ -37,6 +31,7 @@ public class PhysicSystem extends EntitySystem implements EntityListener
     {
         Box2D.init();
         world = new World(new Vector2(0, 0), true);
+        world.setContactListener(this);
         debugRenderer = new Box2DDebugRenderer();
         bodyEditorLoader = new BodyEditorLoader(Gdx.files.internal("physics/liveInSpace"));
 
@@ -97,12 +92,39 @@ public class PhysicSystem extends EntitySystem implements EntityListener
         Body body = PhysicObjectCreator.createBodyByTypeComponent(
                 world, typeComponent, viewComponent.getMainSprite().getWidth(),
                 transformComponent.position, transformComponent.rotation);
+        body.setUserData(entity);
         physicComponent.init(body);
     }
 
     @Override
     public void entityRemoved(Entity entity)
     {
+
+    }
+
+    @Override
+    public void beginContact(Contact contact)
+    {
+        Entity entityA = (Entity) contact.getFixtureA().getBody().getUserData();
+        Entity entityB = (Entity) contact.getFixtureB().getBody().getUserData();
+        PooledEngine pooledEngine = (PooledEngine) engine;
+
+        entityA.add(pooledEngine.createComponent(CollisionComponent.class).init(entityB));
+        entityB.add(pooledEngine.createComponent(CollisionComponent.class).init(entityA));
+    }
+
+    @Override
+    public void endContact(Contact contact) {
+
+    }
+
+    @Override
+    public void preSolve(Contact contact, Manifold oldManifold) {
+
+    }
+
+    @Override
+    public void postSolve(Contact contact, ContactImpulse impulse) {
 
     }
 }

@@ -1,10 +1,7 @@
 package ru.kiripu.lifeinspace.world;
 
 import com.badlogic.ashley.core.PooledEngine;
-import ru.kiripu.lifeinspace.world.systems.JetpackControlSystem;
-import ru.kiripu.lifeinspace.world.systems.PhysicSystem;
-import ru.kiripu.lifeinspace.world.systems.RenderSystem;
-import ru.kiripu.lifeinspace.world.systems.TurnControlSystem;
+import ru.kiripu.lifeinspace.world.systems.*;
 
 /**
  * Created by kiripu on 06.01.2016.
@@ -20,9 +17,11 @@ public class GameWorld
         engine.addSystem(new JetpackControlSystem());
         engine.addSystem(new TurnControlSystem());
         engine.addSystem(new PhysicSystem());
+        engine.addSystem(new CollisionSystem());
+
+        EntityFactory.createPlayer(engine, 180, 400, 90);
         EntityFactory.createAsteroid(engine, 1, 100, 200, 35);
-        EntityFactory.createSafeCapsule(engine, 150, 200, 0);
-        EntityFactory.createPlayer(engine, 200, 250, 90);
+        EntityFactory.createSafeCapsule(engine, 150, 200, 16);
     }
 
     public void update(float deltaTime)
