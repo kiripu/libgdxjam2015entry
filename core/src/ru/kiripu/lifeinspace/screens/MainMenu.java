@@ -29,6 +29,7 @@ public class MainMenu implements Screen
     private Button onePlayerButton;
     private Button twoPlayersButton;
     private Button topSurvivors;
+    private Button soundButton;
 
     private Animation heroAnim;
     private Image heroImage;
@@ -52,6 +53,7 @@ public class MainMenu implements Screen
         onePlayerButton = UIObjectFactory.createButton("onePlayerButton");
         twoPlayersButton = UIObjectFactory.createButton("twoPlayerButton");
         topSurvivors = UIObjectFactory.createButton("topSurvivors");
+        soundButton = UIObjectFactory.createButton("soundButton");
 
         heroAnim = new Animation(0.03f, atlas.findRegions("hero/idle"));
         heroAnim.setPlayMode(Animation.PlayMode.LOOP);
@@ -67,6 +69,7 @@ public class MainMenu implements Screen
         table.add(onePlayerButton).padTop(50).row();
         table.add(twoPlayersButton).padTop(20).row();
         table.add(topSurvivors).padTop(20).row();
+        table.add(soundButton).expand().bottom().right().pad(10);
         stage.addActor(table);
 
         inputListener = new ClickListener()
