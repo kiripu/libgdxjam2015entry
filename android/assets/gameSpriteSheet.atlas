@@ -701,6 +701,27 @@ ui/onePlayerButton_up
   orig: 396, 34
   offset: 0, 0
   index: -1
+ui/oxygenBar_back
+  rotate: false
+  xy: 631, 235
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+ui/oxygenBar_fill
+  rotate: false
+  xy: 713, 244
+  size: 7, 7
+  orig: 7, 7
+  offset: 0, 0
+  index: -1
+ui/oxygenBar_label
+  rotate: false
+  xy: 631, 244
+  size: 80, 7
+  orig: 80, 7
+  offset: 0, 0
+  index: -1
 ui/soundButton_down
   rotate: false
   xy: 400, 67
