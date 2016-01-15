@@ -680,70 +680,91 @@ size: 1024,256
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-mainMenu/onePlayerButton_down
+ui/onePlayerButton_down
   rotate: false
   xy: 2, 182
   size: 396, 34
   orig: 396, 34
   offset: 0, 0
   index: -1
-mainMenu/onePlayerButton_hover
+ui/onePlayerButton_hover
   rotate: false
   xy: 2, 146
   size: 396, 34
   orig: 396, 34
   offset: 0, 0
   index: -1
-mainMenu/onePlayerButton_up
+ui/onePlayerButton_up
   rotate: false
   xy: 2, 110
   size: 396, 34
   orig: 396, 34
   offset: 0, 0
   index: -1
-mainMenu/title
+ui/soundButton_down
+  rotate: false
+  xy: 400, 67
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+ui/soundButton_hover
+  rotate: false
+  xy: 400, 24
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+ui/soundButton_up
+  rotate: false
+  xy: 443, 67
+  size: 41, 41
+  orig: 41, 41
+  offset: 0, 0
+  index: -1
+ui/title_MainMenu
   rotate: false
   xy: 2, 218
   size: 627, 33
   orig: 627, 33
   offset: 0, 0
   index: -1
-mainMenu/topSurvivors_down
+ui/topSurvivors_down
   rotate: false
   xy: 2, 74
   size: 396, 34
   orig: 396, 34
   offset: 0, 0
   index: -1
-mainMenu/topSurvivors_hover
+ui/topSurvivors_hover
   rotate: false
   xy: 2, 38
   size: 396, 34
   orig: 396, 34
   offset: 0, 0
   index: -1
-mainMenu/topSurvivors_up
+ui/topSurvivors_up
   rotate: false
   xy: 2, 2
   size: 396, 34
   orig: 396, 34
   offset: 0, 0
   index: -1
-mainMenu/twoPlayerButton_down
+ui/twoPlayerButton_down
   rotate: false
   xy: 400, 182
   size: 396, 34
   orig: 396, 34
   offset: 0, 0
   index: -1
-mainMenu/twoPlayerButton_hover
+ui/twoPlayerButton_hover
   rotate: false
   xy: 400, 146
   size: 396, 34
   orig: 396, 34
   offset: 0, 0
   index: -1
-mainMenu/twoPlayerButton_up
+ui/twoPlayerButton_up
   rotate: false
   xy: 400, 110
   size: 396, 34

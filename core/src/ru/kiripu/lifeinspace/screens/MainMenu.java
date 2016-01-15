@@ -13,10 +13,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Align;
 import net.dermetfan.gdx.graphics.g2d.AnimatedSprite;
 import ru.kiripu.lifeinspace.Main;
+import ru.kiripu.lifeinspace.factories.UIObjectFactory;
 
 /**
  * Created by kiripu on 26.12.2015.
@@ -47,25 +47,11 @@ public class MainMenu implements Screen
 
         TextureAtlas atlas  = Main.assetsController.getTextureAtlas();
 
-        title = new Image(atlas.createSprite("mainMenu/title"));
+        title = new Image(atlas.createSprite("ui/title_MainMenu"));
 
-        Button.ButtonStyle style = new Button.ButtonStyle();
-        style.up = new SpriteDrawable(atlas.createSprite("mainMenu/onePlayerButton_up"));
-        style.down = new SpriteDrawable(atlas.createSprite("mainMenu/onePlayerButton_down"));
-        style.over = new SpriteDrawable(atlas.createSprite("mainMenu/onePlayerButton_hover"));
-        onePlayerButton = new Button(style);
-
-        style = new Button.ButtonStyle();
-        style.up = new SpriteDrawable(atlas.createSprite("mainMenu/twoPlayerButton_up"));
-        style.down = new SpriteDrawable(atlas.createSprite("mainMenu/twoPlayerButton_down"));
-        style.over = new SpriteDrawable(atlas.createSprite("mainMenu/twoPlayerButton_hover"));
-        twoPlayersButton = new Button(style);
-
-        style = new Button.ButtonStyle();
-        style.up = new SpriteDrawable(atlas.createSprite("mainMenu/topSurvivors_up"));
-        style.down = new SpriteDrawable(atlas.createSprite("mainMenu/topSurvivors_down"));
-        style.over = new SpriteDrawable(atlas.createSprite("mainMenu/topSurvivors_hover"));
-        topSurvivors = new Button(style);
+        onePlayerButton = UIObjectFactory.createButton("onePlayerButton");
+        twoPlayersButton = UIObjectFactory.createButton("twoPlayerButton");
+        topSurvivors = UIObjectFactory.createButton("topSurvivors");
 
         heroAnim = new Animation(0.03f, atlas.findRegions("hero/idle"));
         heroAnim.setPlayMode(Animation.PlayMode.LOOP);
