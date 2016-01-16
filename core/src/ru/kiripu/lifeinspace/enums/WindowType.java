@@ -6,4 +6,5 @@ package ru.kiripu.lifeinspace.enums;
 public class WindowType
 {
     public static final int GAME_OVER = 0;
+    public static final int PAUSE = 1;
 }

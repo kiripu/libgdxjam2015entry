@@ -1620,189 +1620,217 @@ filter: Nearest,Nearest
 repeat: none
 ui/inputNameBack
   rotate: false
-  xy: 631, 421
+  xy: 109, 485
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
 ui/mainMenuButton_down
   rotate: false
-  xy: 400, 345
+  xy: 631, 264
   size: 225, 51
   orig: 225, 51
   offset: 0, 0
   index: -1
 ui/mainMenuButton_hover
   rotate: false
-  xy: 2, 2
+  xy: 2, 229
   size: 225, 51
   orig: 225, 51
   offset: 0, 0
   index: -1
 ui/mainMenuButton_up
   rotate: false
-  xy: 400, 292
+  xy: 229, 229
   size: 225, 51
   orig: 225, 51
   offset: 0, 0
   index: -1
 ui/newRecord_label
   rotate: false
-  xy: 2, 55
+  xy: 133, 478
   size: 407, 17
   orig: 407, 17
   offset: 0, 0
   index: -1
 ui/onePlayerButton_down
   rotate: false
-  xy: 2, 362
+  xy: 542, 461
   size: 396, 34
   orig: 396, 34
   offset: 0, 0
   index: -1
 ui/onePlayerButton_hover
   rotate: false
-  xy: 2, 326
+  xy: 88, 442
   size: 396, 34
   orig: 396, 34
   offset: 0, 0
   index: -1
 ui/onePlayerButton_up
   rotate: false
-  xy: 2, 290
+  xy: 486, 425
   size: 396, 34
   orig: 396, 34
   offset: 0, 0
   index: -1
 ui/oxygenBar_back
   rotate: false
-  xy: 890, 502
+  xy: 9, 488
   size: 7, 7
   orig: 7, 7
   offset: 0, 0
   index: -1
 ui/oxygenBar_fill
   rotate: false
-  xy: 229, 3
+  xy: 18, 488
   size: 7, 7
   orig: 7, 7
   offset: 0, 0
   index: -1
 ui/oxygenBar_label
   rotate: false
-  xy: 808, 502
+  xy: 27, 488
   size: 80, 7
   orig: 80, 7
   offset: 0, 0
   index: -1
+ui/pause_title
+  rotate: false
+  xy: 2, 80
+  size: 804, 76
+  orig: 804, 76
+  offset: 0, 0
+  index: -1
 ui/playAgainButton_down
   rotate: false
-  xy: 400, 239
+  xy: 456, 211
   size: 225, 51
   orig: 225, 51
   offset: 0, 0
   index: -1
 ui/playAgainButton_hover
   rotate: false
-  xy: 400, 186
+  xy: 683, 211
   size: 225, 51
   orig: 225, 51
   offset: 0, 0
   index: -1
 ui/playAgainButton_up
   rotate: false
-  xy: 400, 133
+  xy: 2, 176
   size: 225, 51
   orig: 225, 51
   offset: 0, 0
   index: -1
 ui/redRibbon
   rotate: false
-  xy: 400, 83
+  xy: 2, 490
   size: 5, 5
   orig: 5, 5
   offset: 0, 0
   index: -1
+ui/resumeButton_down
+  rotate: false
+  xy: 229, 176
+  size: 225, 51
+  orig: 225, 51
+  offset: 0, 0
+  index: -1
+ui/resumeButton_hover
+  rotate: false
+  xy: 456, 158
+  size: 225, 51
+  orig: 225, 51
+  offset: 0, 0
+  index: -1
+ui/resumeButton_up
+  rotate: false
+  xy: 683, 158
+  size: 225, 51
+  orig: 225, 51
+  offset: 0, 0
+  index: -1
 ui/soundButton_down
   rotate: false
-  xy: 229, 12
+  xy: 940, 454
   size: 41, 41
   orig: 41, 41
   offset: 0, 0
   index: -1
 ui/soundButton_hover
   rotate: false
-  xy: 400, 90
+  xy: 2, 445
   size: 41, 41
   orig: 41, 41
   offset: 0, 0
   index: -1
 ui/soundButton_up
   rotate: false
-  xy: 808, 459
+  xy: 45, 445
   size: 41, 41
   orig: 41, 41
   offset: 0, 0
   index: -1
 ui/title_MainMenu
   rotate: false
-  xy: 2, 398
+  xy: 2, 282
   size: 627, 33
   orig: 627, 33
   offset: 0, 0
   index: -1
 ui/topSurvivors_down
   rotate: false
-  xy: 2, 254
+  xy: 2, 406
   size: 396, 34
   orig: 396, 34
   offset: 0, 0
   index: -1
 ui/topSurvivors_hover
   rotate: false
-  xy: 2, 218
+  xy: 400, 389
   size: 396, 34
   orig: 396, 34
   offset: 0, 0
   index: -1
 ui/topSurvivors_up
   rotate: false
-  xy: 2, 182
+  xy: 2, 370
   size: 396, 34
   orig: 396, 34
   offset: 0, 0
   index: -1
 ui/twoPlayerButton_down
   rotate: false
-  xy: 2, 146
+  xy: 400, 353
   size: 396, 34
   orig: 396, 34
   offset: 0, 0
   index: -1
 ui/twoPlayerButton_hover
   rotate: false
-  xy: 2, 110
+  xy: 2, 334
   size: 396, 34
   orig: 396, 34
   offset: 0, 0
   index: -1
 ui/twoPlayerButton_up
   rotate: false
-  xy: 2, 74
+  xy: 400, 317
   size: 396, 34
   orig: 396, 34
   offset: 0, 0
   index: -1
 ui/windowBack
   rotate: false
-  xy: 272, 43
+  xy: 121, 485
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
 ui/youDied_label
   rotate: false
-  xy: 2, 433
+  xy: 2, 2
   size: 804, 76
   orig: 804, 76
   offset: 0, 0

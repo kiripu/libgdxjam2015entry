@@ -33,6 +33,7 @@ public class JetpackControlSystem extends IteratingSystem implements EntityListe
     @Override
     protected void processEntity(Entity entity, float deltaTime)
     {
+        if (deltaTime == 0) return;
         JetpackControlComponent jetpackControlComponent = ComponentMappers.JETPACK.get(entity);
         if (jetpackControlComponent.isActive)
         {
