@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.utils.Array;
 import ru.kiripu.lifeinspace.enums.GameObjectType;
 import ru.kiripu.lifeinspace.world.components.TypeComponent;
 
@@ -47,6 +48,11 @@ public class PhysicObjectCreator
         Filter filter = new Filter();
         filter.categoryBits = CATEGORY_ASTEROID;
         filter.maskBits = MASK_ASTEROID;
+        Array<Fixture> fixtures = body.getFixtureList();
+        for (int i = 0; i < fixtures.size; i++)
+        {
+            fixtures.get(i).setFilterData(filter);
+        }
         body.getFixtureList().get(0).setFilterData(filter);
         return body;
     }
