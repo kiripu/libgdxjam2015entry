@@ -60,17 +60,17 @@ public class JetpackControlSystem extends IteratingSystem implements EntityListe
             if (isJetpackKeyPressed && !jetpackControlComponent.jetpackIsActive)
             {
                 jetpackControlComponent.jetpackIsActive = true;
-                oxygenComponent.addModificator(OxygenModificator.PERNABEBT_JETPACK_USE);
+                oxygenComponent.addModificator(OxygenModificator.PERMANENT_JETPACK_USE);
             }
             else if (!isJetpackKeyPressed && jetpackControlComponent.jetpackIsActive)
             {
                 jetpackControlComponent.jetpackIsActive = false;
-                oxygenComponent.removeModificator(OxygenModificator.PERNABEBT_JETPACK_USE);
+                oxygenComponent.removeModificator(OxygenModificator.PERMANENT_JETPACK_USE);
             }
         }
         else
         {
-            oxygenComponent.removeModificator(OxygenModificator.PERNABEBT_JETPACK_USE);
+            oxygenComponent.removeModificator(OxygenModificator.PERMANENT_JETPACK_USE);
         }
 
     }

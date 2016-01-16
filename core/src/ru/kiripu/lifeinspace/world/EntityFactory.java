@@ -48,7 +48,7 @@ public class EntityFactory
         entity.add(engine.createComponent(PhysicComponent.class));
         entity.add(engine.createComponent(TurnControlComponent.class).init(Input.Keys.D, Input.Keys.A, 1f));
         entity.add(engine.createComponent(JetpackControlComponent.class).init(Input.Keys.W, 10000));
-        entity.add(engine.createComponent(OxygenComponent.class).init(100).addModificator(OxygenModificator.PERNABEBT_DEFAULT));
+        entity.add(engine.createComponent(OxygenComponent.class).init(100).addModificator(OxygenModificator.PERMANENT_DEFAULT));
         engine.addEntity(entity);
     }
 
