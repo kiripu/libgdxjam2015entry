@@ -81,12 +81,12 @@ public class MainMenu implements Screen
                 Actor targetActor = event.getTarget();
                 if (targetActor == onePlayerButton)
                 {
-                    GameMaster.getInstance().setGameType(GameType.SINGLE);
+                    GameMaster.getInstance().init(GameType.SINGLE);
                     Main.game.setScreen(new GameWorldScreen());
                 }
                 else if (targetActor == twoPlayersButton)
                 {
-                    GameMaster.getInstance().setGameType(GameType.COOP);
+                    GameMaster.getInstance().init(GameType.COOP);
                     Main.game.setScreen(new GameWorldScreen());
                 }
                 else if (targetActor == topSurvivors) System.out.println("topSurvivors");

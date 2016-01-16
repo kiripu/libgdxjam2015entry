@@ -62,18 +62,20 @@ public class GameWorldScreen implements Screen {
     @Override
     public void render(float delta)
     {
+        GameMaster gm = GameMaster.getInstance();
         progressBar.setSize(380, 7);
-        progressBar.setValue(GameMaster.getInstance().getOxygenProgress());
+        progressBar.setValue(gm.getOxygenProgress());
 
+        gm.updateGameTime(isPaused ? 0 : delta);
         world.update(isPaused ? 0 : delta);
         stage.act(delta);
         stage.draw();
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) && !isPaused && !GameMaster.getInstance().gameOver())
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) && !isPaused && !gm.gameOver())
         {
             Main.game.pause();
         }
-        if (GameMaster.getInstance().gameOver() && !startShowGameOver)
+        if (gm.gameOver() && !startShowGameOver)
         {
             startShowGameOver = true;
             Timer.schedule(new Timer.Task() {
@@ -81,7 +83,7 @@ public class GameWorldScreen implements Screen {
                 public void run() {
                   WindowFactory.createWindow(stage, WindowType.GAME_OVER);
                 }
-            }, 2);
+            }, 4);
         }
     }
 

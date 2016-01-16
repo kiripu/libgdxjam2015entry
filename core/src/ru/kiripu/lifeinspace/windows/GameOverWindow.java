@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import ru.kiripu.lifeinspace.Main;
 import ru.kiripu.lifeinspace.enums.BitmapFonts;
 import ru.kiripu.lifeinspace.factories.UIObjectFactory;
+import ru.kiripu.lifeinspace.managers.GameMaster;
 import ru.kiripu.lifeinspace.screens.GameWorldScreen;
 import ru.kiripu.lifeinspace.screens.MainMenu;
 
@@ -38,7 +39,7 @@ public class GameOverWindow {
         table.padTop(200);
 
         title = UIObjectFactory.createImage("youDied_label");
-        timeLabel = UIObjectFactory.createLabel("You survived: 00.20", BitmapFonts.OLIVER, 20);
+        timeLabel = UIObjectFactory.createLabel("You survived: " + GameMaster.getInstance().getGameTime(), BitmapFonts.OLIVER, 20);
         record = UIObjectFactory.createImage("newRecord_label");
         enterNameLabel = UIObjectFactory.createLabel("Enter your name:", BitmapFonts.OLIVER, 20);
         enterNameField = UIObjectFactory.createTextField("ASDAS", BitmapFonts.OLIVER, 20);
