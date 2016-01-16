@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.joints.WeldJointDef;
 import ru.kiripu.lifeinspace.enums.GameObjectType;
+import ru.kiripu.lifeinspace.enums.States;
 import ru.kiripu.lifeinspace.world.ComponentMappers;
 import ru.kiripu.lifeinspace.world.components.*;
 import ru.kiripu.lifeinspace.world.data.OxygenModificator;
@@ -40,12 +41,14 @@ public class CollisionSystem extends IteratingSystem {
     {
         TypeComponent typeComponent = ComponentMappers.TYPE.get(otherEntity);
         CapsuleControlComponent capsuleControlComponent = ComponentMappers.CAPSULE_CONTROL.get(playerEntity);
-        if (typeComponent.type == GameObjectType.TYPE_SAFE_CAPSULE && capsuleControlComponent == null)
+        StateComponent stateComponent = ComponentMappers.STATE.get(otherEntity);
+        if (typeComponent.type == GameObjectType.TYPE_SAFE_CAPSULE
+                && capsuleControlComponent == null && stateComponent.state == States.STATE_FREE)
         {
+            stateComponent.state = States.STATE_BUSY;
             Body playerBody = ComponentMappers.PHYSIC.get(playerEntity).body;
             Body safeCapsuleBody = ComponentMappers.PHYSIC.get(otherEntity).body;
 
-            playerBody.getFixtureList().get(0).setSensor(true);
             Vector2 posDiff = playerBody.getWorldCenter().sub(playerBody.getPosition()).cpy();
             playerBody.setTransform(safeCapsuleBody.getWorldCenter().sub(posDiff), playerBody.getAngle());
 
@@ -59,7 +62,6 @@ public class CollisionSystem extends IteratingSystem {
             turnControlComponent.isActive = false;
             PooledEngine engine = (PooledEngine) this.getEngine();
             playerEntity.add(engine.createComponent(CapsuleControlComponent.class).init(jetpackControlComponent.jetpackActivateKey));
-
         }
         if (typeComponent.type == GameObjectType.TYPE_ASTEROID)
         {
@@ -72,10 +74,12 @@ public class CollisionSystem extends IteratingSystem {
     {
         TypeComponent typeComponent = ComponentMappers.TYPE.get(otherEntity);
         CapsuleControlComponent capsuleControlComponent = ComponentMappers.CAPSULE_CONTROL.get(playerEntity);
+        StateComponent stateComponent = ComponentMappers.STATE.get(otherEntity);
         if (typeComponent.type == GameObjectType.TYPE_SAFE_CAPSULE
                 && capsuleControlComponent != null && capsuleControlComponent.isExiting)
         {
             playerEntity.remove(CapsuleControlComponent.class);
+            stateComponent.state = States.STATE_FREE;
         }
     }
 }

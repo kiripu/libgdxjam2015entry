@@ -18,5 +18,6 @@ public class ComponentMappers
     public static final ComponentMapper<OxygenComponent> OXYGEN = ComponentMapper.getFor(OxygenComponent.class);
     public static final ComponentMapper<CapsuleControlComponent> CAPSULE_CONTROL
             = ComponentMapper.getFor(CapsuleControlComponent.class);
+    public static final ComponentMapper<StateComponent> STATE = ComponentMapper.getFor(StateComponent.class);
 
 }

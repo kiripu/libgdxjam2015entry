@@ -72,7 +72,6 @@ public class CapsuelControlSystem extends IteratingSystem implements EntityListe
 
         OxygenComponent oxygenComponent = ComponentMappers.OXYGEN.get(entity);
         oxygenComponent.addModificator(OxygenModificator.PERMANENT_SAFE_CAPSUEL_USE);
-
     }
 
     @Override
