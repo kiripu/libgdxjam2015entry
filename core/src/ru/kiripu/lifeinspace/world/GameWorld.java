@@ -35,6 +35,13 @@ public class GameWorld
         engine.update(deltaTime);
     }
 
+    public void dispose()
+    {
+        engine.removeAllEntities();
+        engine.clearPools();
+        engine = null;
+    }
+
     private void createSingleGame()
     {
         EntityFactory.createPlayer(engine, 300, 300, 0,

@@ -65,10 +65,12 @@ public class GameOverWindow {
                 Actor targetActor = event.getTarget();
                 if (targetActor == playAgainButton)
                 {
+                    Main.game.getScreen().dispose();
                     Main.game.setScreen(new GameWorldScreen());
                 }
                 else if (targetActor == mainMenuButton)
                 {
+                    Main.game.getScreen().dispose();
                     Main.game.setScreen(new MainMenu());
                 }
             }

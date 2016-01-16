@@ -60,6 +60,7 @@ public class PauseWindow {
                 }
                 else if (targetActor == mainMenuButton)
                 {
+                    Main.game.getScreen().dispose();
                     Main.game.setScreen(new MainMenu());
                 }
             }
