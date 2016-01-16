@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.systems.IteratingSystem;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.joints.WeldJointDef;
 import ru.kiripu.lifeinspace.enums.GameObjectType;
@@ -45,7 +46,8 @@ public class CollisionSystem extends IteratingSystem {
             Body safeCapsuleBody = ComponentMappers.PHYSIC.get(otherEntity).body;
 
             playerBody.getFixtureList().get(0).setSensor(true);
-            playerBody.setTransform(safeCapsuleBody.getPosition(), safeCapsuleBody.getAngle());
+            Vector2 posDiff = playerBody.getWorldCenter().sub(playerBody.getPosition()).cpy();
+            playerBody.setTransform(safeCapsuleBody.getWorldCenter().sub(posDiff), playerBody.getAngle());
 
             WeldJointDef jointDef = new WeldJointDef ();
             jointDef.initialize(playerBody, safeCapsuleBody, safeCapsuleBody.getWorldCenter());
