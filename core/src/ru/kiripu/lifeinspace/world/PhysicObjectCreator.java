@@ -18,7 +18,7 @@ public class PhysicObjectCreator
     final private static short CATEGORY_SAFE_CUPSULE = 0x0004;
     final private static short CATEGORY_SAFE_CUPSULE_CENTER = 0x0008;
 
-    final private static short MASK_PLAYER = CATEGORY_ASTEROID | CATEGORY_SAFE_CUPSULE_CENTER;
+    final private static short MASK_PLAYER = CATEGORY_ASTEROID | CATEGORY_SAFE_CUPSULE_CENTER | CATEGORY_PLAYER;
     final private static short MASK_ASTEROID = CATEGORY_PLAYER | CATEGORY_SAFE_CUPSULE;
     final private static short MASK_SAFE_CAPSULE = CATEGORY_ASTEROID;
     final private static short MASK_SAFE_CAPSULE_CENTER = CATEGORY_PLAYER;
@@ -101,6 +101,9 @@ public class PhysicObjectCreator
 
         Body body = world.createBody(bd);
         getBodyLoader().attachFixture(body, bodyName, fd, scale);
+
+        Vector2 posDiff = body.getWorldCenter().sub(body.getPosition()).cpy();
+        body.setTransform(body.getPosition().sub(posDiff), body.getAngle());
         return body;
     }
 
