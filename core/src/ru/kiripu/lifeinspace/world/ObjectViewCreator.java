@@ -45,12 +45,12 @@ public class ObjectViewCreator
         ViewComponent viewComponent = engine.createComponent(ViewComponent.class).init();
 
         AnimatedSprite sprite = new AnimatedSprite(AnimationStorage.getInstance().
-                getAnimation("oxygenRay", "idle", Animation.PlayMode.LOOP));
+                getAnimation("oxygenRay", "idle", Animation.PlayMode.LOOP).animation);
         sprite.setOrigin(0, 0);
         addDataToViewComponent(viewComponent, sprite, false, new Vector2(35, 18));
 
         sprite = new AnimatedSprite(AnimationStorage.getInstance().
-                getAnimation("hero", "idle", Animation.PlayMode.LOOP));
+                getAnimation("hero", "idle", Animation.PlayMode.LOOP).animation);
         sprite.setOrigin(0, 0);
         addDataToViewComponent(viewComponent, sprite, true, null);
 

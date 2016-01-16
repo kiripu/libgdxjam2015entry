@@ -2,6 +2,7 @@ package ru.kiripu.lifeinspace.world;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import ru.kiripu.lifeinspace.enums.GameObjectType;
 import ru.kiripu.lifeinspace.enums.States;
 import ru.kiripu.lifeinspace.world.components.*;
@@ -45,10 +46,15 @@ public class EntityFactory
     {
         TypeComponent typeComponent = engine.createComponent(TypeComponent.class).init(GameObjectType.TYPE_PLAYER, 0);
         ViewComponent viewComponent = ObjectViewCreator.createPlayerView(engine, typeComponent);
+        AnimationComponent animationComponent = engine.createComponent(AnimationComponent.class);
+        animationComponent.init(
+                AnimationStorage.getInstance().getAnimation("hero", "idle", Animation.PlayMode.LOOP));
+
         Entity entity = engine.createEntity();
         entity.add(engine.createComponent(TransformComponent.class).init(posX, posY, rotation));
         entity.add(typeComponent);
         entity.add(viewComponent);
+        entity.add(animationComponent);
         entity.add(engine.createComponent(PhysicComponent.class));
         entity.add(engine.createComponent(TurnControlComponent.class).init(turnRightKey, turnLeftKey, 1f));
         entity.add(engine.createComponent(JetpackControlComponent.class).init(actionKey, 10000));

@@ -66,7 +66,7 @@ public class CollisionSystem extends IteratingSystem {
         if (typeComponent.type == GameObjectType.TYPE_ASTEROID)
         {
             OxygenComponent oxygenComponent = ComponentMappers.OXYGEN.get(playerEntity);
-            oxygenComponent.addModificator(OxygenModificator.createInstantAsteroidModificator());
+            if (oxygenComponent != null) oxygenComponent.addModificator(OxygenModificator.createInstantAsteroidModificator());
         }
     }
 

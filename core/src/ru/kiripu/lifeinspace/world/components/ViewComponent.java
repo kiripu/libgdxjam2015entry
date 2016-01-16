@@ -29,6 +29,12 @@ public class ViewComponent implements Component, Pool.Poolable
         return sprites.get(mainSpriteIndex);
     }
 
+    public void setMainSprite(Sprite sprite, Vector2 spriteOffset)
+    {
+        sprites.set(mainSpriteIndex, sprite);
+        offset.set(mainSpriteIndex, spriteOffset);
+    }
+
 
     @Override
     public void reset() {

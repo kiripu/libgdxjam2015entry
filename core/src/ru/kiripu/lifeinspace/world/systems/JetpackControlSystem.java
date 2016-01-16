@@ -104,5 +104,6 @@ public class JetpackControlSystem extends IteratingSystem implements EntityListe
     @Override
     public void entityRemoved(Entity entity)
     {
+        updateViewComponent(false, entity);
     }
 }

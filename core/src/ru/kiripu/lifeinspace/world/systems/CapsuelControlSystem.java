@@ -60,7 +60,7 @@ public class CapsuelControlSystem extends IteratingSystem implements EntityListe
         ViewComponent viewComponent = ComponentMappers.VIEW.get(entity);
         ((AnimatedSprite)viewComponent.getMainSprite()).setAnimation(
                 AnimationStorage.getInstance().
-                        getAnimation("hero", "safe", Animation.PlayMode.LOOP));
+                        getAnimation("hero", "safe", Animation.PlayMode.LOOP).animation);
 
         OxygenComponent oxygenComponent = ComponentMappers.OXYGEN.get(entity);
         oxygenComponent.addModificator(OxygenModificator.PERMANENT_SAFE_CAPSUEL_USE);
@@ -72,10 +72,10 @@ public class CapsuelControlSystem extends IteratingSystem implements EntityListe
         ViewComponent viewComponent = ComponentMappers.VIEW.get(entity);
         ((AnimatedSprite)viewComponent.getMainSprite()).setAnimation(
                 AnimationStorage.getInstance().
-                        getAnimation("hero", "idle", Animation.PlayMode.LOOP));
+                        getAnimation("hero", "idle", Animation.PlayMode.LOOP).animation);
 
         OxygenComponent oxygenComponent = ComponentMappers.OXYGEN.get(entity);
-        oxygenComponent.removeModificator(OxygenModificator.PERMANENT_SAFE_CAPSUEL_USE);
+        if (oxygenComponent != null) oxygenComponent.removeModificator(OxygenModificator.PERMANENT_SAFE_CAPSUEL_USE);
 
     }
 }

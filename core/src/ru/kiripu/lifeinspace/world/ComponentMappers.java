@@ -19,5 +19,6 @@ public class ComponentMappers
     public static final ComponentMapper<CapsuleControlComponent> CAPSULE_CONTROL
             = ComponentMapper.getFor(CapsuleControlComponent.class);
     public static final ComponentMapper<StateComponent> STATE = ComponentMapper.getFor(StateComponent.class);
+    public static final ComponentMapper<AnimationComponent> ANIMATION = ComponentMapper.getFor(AnimationComponent.class);
 
 }
