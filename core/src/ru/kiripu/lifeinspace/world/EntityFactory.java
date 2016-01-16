@@ -5,6 +5,7 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Input;
 import ru.kiripu.lifeinspace.enums.GameObjectType;
 import ru.kiripu.lifeinspace.world.components.*;
+import ru.kiripu.lifeinspace.world.data.OxygenModificator;
 
 /**
  * Created by kiripu on 07.01.2016.
@@ -47,7 +48,7 @@ public class EntityFactory
         entity.add(engine.createComponent(PhysicComponent.class));
         entity.add(engine.createComponent(TurnControlComponent.class).init(Input.Keys.D, Input.Keys.A, 1f));
         entity.add(engine.createComponent(JetpackControlComponent.class).init(Input.Keys.W, 10000));
-        entity.add(engine.createComponent(OxygenComponent.class).init(100, -1));
+        entity.add(engine.createComponent(OxygenComponent.class).init(100).addModificator(OxygenModificator.PERNABEBT_DEFAULT));
         engine.addEntity(entity);
     }
 

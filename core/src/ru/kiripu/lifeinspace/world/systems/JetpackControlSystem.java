@@ -1,6 +1,8 @@
 package ru.kiripu.lifeinspace.world.systems;
 
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.EntityListener;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.Gdx;
@@ -11,15 +13,21 @@ import ru.kiripu.lifeinspace.world.components.JetpackControlComponent;
 import ru.kiripu.lifeinspace.world.components.OxygenComponent;
 import ru.kiripu.lifeinspace.world.components.PhysicComponent;
 import ru.kiripu.lifeinspace.world.components.ViewComponent;
+import ru.kiripu.lifeinspace.world.data.OxygenModificator;
 
 /**
  * Created by kiripu on 08.01.2016.
  */
-public class JetpackControlSystem extends IteratingSystem {
-
+public class JetpackControlSystem extends IteratingSystem implements EntityListener {
     public JetpackControlSystem()
     {
         super(Family.all(JetpackControlComponent.class, ViewComponent.class, PhysicComponent.class).get());
+    }
+
+    @Override
+    public void addedToEngine(Engine engine) {
+        super.addedToEngine(engine);
+        engine.addEntityListener(getFamily(), this);
     }
 
     @Override
@@ -27,37 +35,66 @@ public class JetpackControlSystem extends IteratingSystem {
     {
         Input input = Gdx.input;
         JetpackControlComponent jetpackControlComponent = ComponentMappers.JETPACK.get(entity);
-        Boolean isJetpackActivated = input.isKeyPressed(jetpackControlComponent.jetpackActivateKey);
-        int oxygenChangeAdd = 0;
+        Boolean isJetpackKeyActivated = input.isKeyPressed(jetpackControlComponent.jetpackActivateKey);
 
-        if (isJetpackActivated)
+        if (isJetpackKeyActivated)
         {
-            if (!jetpackControlComponent.jetpackIsActive)
-            {
-                jetpackControlComponent.jetpackIsActive = true;
-                oxygenChangeAdd += -10;
-            }
             Body body = ComponentMappers.PHYSIC.get(entity).body;
             jetpackControlComponent.forceVector.setAngleRad(body.getAngle() + (float)Math.PI);
             body.applyForceToCenter(jetpackControlComponent.forceVector, true);
         }
-        else
+
+        updateViewComponent(isJetpackKeyActivated, entity);
+        updateOxygenComponent(
+                isJetpackKeyActivated, entity, jetpackControlComponent);
+    }
+
+    private void updateOxygenComponent(
+            Boolean isJetpackKeyPressed,
+            Entity entity,
+            JetpackControlComponent jetpackControlComponent)
+    {
+        OxygenComponent oxygenComponent = ComponentMappers.OXYGEN.get(entity);
+        if (jetpackControlComponent != null)
         {
-            if (jetpackControlComponent.jetpackIsActive)
+            if (isJetpackKeyPressed && !jetpackControlComponent.jetpackIsActive)
+            {
+                jetpackControlComponent.jetpackIsActive = true;
+                oxygenComponent.addModificator(OxygenModificator.PERNABEBT_JETPACK_USE);
+            }
+            else if (!isJetpackKeyPressed && jetpackControlComponent.jetpackIsActive)
             {
                 jetpackControlComponent.jetpackIsActive = false;
-                oxygenChangeAdd += 10;
+                oxygenComponent.removeModificator(OxygenModificator.PERNABEBT_JETPACK_USE);
             }
         }
-
-        ComponentMappers.VIEW.get(entity).spritesVisibility.set(0, isJetpackActivated);
-
-        OxygenComponent oxygenComponent = ComponentMappers.OXYGEN.get(entity);
-        if (oxygenComponent != null && oxygenChangeAdd != 0)
+        else
         {
-            oxygenComponent.oxygenChangeSpeed += oxygenChangeAdd;
+            oxygenComponent.removeModificator(OxygenModificator.PERNABEBT_JETPACK_USE);
         }
 
+    }
 
+    private void updateViewComponent(
+            Boolean isJetpackKeyPressed,
+            Entity entity)
+    {
+        ViewComponent viewComponent = ComponentMappers.VIEW.get(entity);
+        if (viewComponent != null)
+        {
+            viewComponent.spritesVisibility.set(0, isJetpackKeyPressed);
+        }
+    }
+
+    @Override
+    public void entityAdded(Entity entity) {
+
+    }
+
+    @Override
+    public void entityRemoved(Entity entity)
+    {
+        updateOxygenComponent(false, entity, null);
+        updateViewComponent(false, entity);
     }
 }

@@ -22,7 +22,7 @@ public class OxygenSystem extends IteratingSystem{
     protected void processEntity(Entity entity, float deltaTime)
     {
         OxygenComponent oxygenComponent = ComponentMappers.OXYGEN.get(entity);
-        oxygenComponent.curOxygenValue += oxygenComponent.oxygenChangeSpeed * deltaTime;
+        oxygenComponent.curOxygenValue += oxygenComponent.getOxygenChangeSpeed() * deltaTime;
         oxygenComponent.curOxygenValue =
                 MathUtils.clamp(oxygenComponent.curOxygenValue, 0, oxygenComponent.maxOxygenValue);
         GameMaster.getInstance().setOxygenProgress(oxygenComponent.curOxygenValue);

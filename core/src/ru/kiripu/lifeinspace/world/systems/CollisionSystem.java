@@ -7,8 +7,8 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.joints.WeldJointDef;
 import ru.kiripu.lifeinspace.enums.GameObjectType;
 import ru.kiripu.lifeinspace.world.ComponentMappers;
-import ru.kiripu.lifeinspace.world.components.CollisionComponent;
-import ru.kiripu.lifeinspace.world.components.TypeComponent;
+import ru.kiripu.lifeinspace.world.components.*;
+import ru.kiripu.lifeinspace.world.data.OxygenModificator;
 
 /**
  * Created by kiripu on 08.01.2016.
@@ -44,6 +44,14 @@ public class CollisionSystem extends IteratingSystem {
             WeldJointDef jointDef = new WeldJointDef ();
             jointDef.initialize(playerBody, safeCapsuleBody, safeCapsuleBody.getWorldCenter());
             safeCapsuleBody.getWorld().createJoint(jointDef);
+
+            playerEntity.remove(TurnControlComponent.class);
+            playerEntity.remove(JetpackControlComponent.class);
+        }
+        if (typeComponent.type == GameObjectType.TYPE_ASTEROID)
+        {
+            OxygenComponent oxygenComponent = ComponentMappers.OXYGEN.get(playerEntity);
+            oxygenComponent.addModificator(OxygenModificator.createInstantAsteroidModificator());
         }
     }
 }
