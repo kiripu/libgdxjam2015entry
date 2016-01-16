@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.Pool;
  */
 public class JetpackControlComponent implements Component, Pool.Poolable {
 
+    public boolean jetpackIsActive;
     public int jetpackActivateKey;
     public Vector2 forceVector = Vector2.Zero.cpy();
 
@@ -16,6 +17,7 @@ public class JetpackControlComponent implements Component, Pool.Poolable {
     {
         this.jetpackActivateKey = jetpackActivateKey;
         this.forceVector.x = force;
+        this.jetpackIsActive = false;
         return this;
     }
 
@@ -23,5 +25,6 @@ public class JetpackControlComponent implements Component, Pool.Poolable {
     public void reset() {
         jetpackActivateKey = -1;
         forceVector.setZero();
+        jetpackIsActive = false;
     }
 }

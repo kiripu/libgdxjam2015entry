@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import ru.kiripu.lifeinspace.factories.UIObjectFactory;
+import ru.kiripu.lifeinspace.managers.GameMaster;
 import ru.kiripu.lifeinspace.world.GameWorld;
 
 /**
@@ -27,7 +28,6 @@ public class GameWorldScreen implements Screen {
     {
         world = new GameWorld();
         world.init();
-
 
         progressBarLabel = UIObjectFactory.createImage("oxygenBar_label");
         progressBar = UIObjectFactory.createProgressBar("oxygenBar");
@@ -56,6 +56,8 @@ public class GameWorldScreen implements Screen {
     public void render(float delta)
     {
         progressBar.setSize(380, 7);
+        progressBar.setValue(GameMaster.getInstance().getOxygenProgress());
+
         world.update(delta);
         stage.act(delta);
         stage.draw();

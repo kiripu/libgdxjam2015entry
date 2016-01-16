@@ -18,8 +18,9 @@ public class GameWorld
         engine.addSystem(new TurnControlSystem());
         engine.addSystem(new PhysicSystem());
         engine.addSystem(new CollisionSystem());
+        engine.addSystem(new OxygenSystem());
 
-        EntityFactory.createPlayer(engine, 180, 400, 90);
+        EntityFactory.createPlayer(engine, 180, 250, 90);
         EntityFactory.createAsteroid(engine, 1, 100, 200, 35);
         EntityFactory.createSafeCapsule(engine, 150, 200, 16);
     }

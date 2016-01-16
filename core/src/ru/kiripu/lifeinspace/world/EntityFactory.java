@@ -48,6 +48,7 @@ public class EntityFactory
         entity.add(engine.createComponent(TurnControlComponent.class).init(Input.Keys.D, Input.Keys.A, 1f));
         entity.add(engine.createComponent(JetpackControlComponent.class).init(Input.Keys.W, 10000));
         entity.add(engine.createComponent(EnergyComponent.class).init(100, 5, 20, 10, 10));
+        entity.add(engine.createComponent(OxygenComponent.class).init(100, -1));
         engine.addEntity(entity);
     }
 

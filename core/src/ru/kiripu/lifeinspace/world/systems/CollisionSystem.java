@@ -43,7 +43,7 @@ public class CollisionSystem extends IteratingSystem {
 
             WeldJointDef jointDef = new WeldJointDef ();
             jointDef.initialize(playerBody, safeCapsuleBody, safeCapsuleBody.getWorldCenter());
-            playerBody.getWorld().createJoint(jointDef);
+            safeCapsuleBody.getWorld().createJoint(jointDef);
         }
     }
 }
