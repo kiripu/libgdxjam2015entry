@@ -4,7 +4,7 @@
     "idle": "hero/idle",
     "safe": "hero/safe",
     "dead": "hero/dead",
-    "die": "hero/die"
+    "die": "hero/die",
     "die_2": "hero/die_2"
   },
   "oxygenRay":
