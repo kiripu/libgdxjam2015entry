@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import ru.kiripu.lifeinspace.Main;
+import ru.kiripu.lifeinspace.enums.GameObjectType;
 import ru.kiripu.lifeinspace.world.BodyEditorLoader;
 import ru.kiripu.lifeinspace.world.ComponentMappers;
 import ru.kiripu.lifeinspace.world.PhysicObjectCreator;
@@ -70,11 +71,27 @@ public class PhysicSystem extends EntitySystem implements EntityListener, Contac
         int length = entities.size();
         Body body;
         TransformComponent transform;
+        int type;
+        Vector2 velocity;
+        float velocityValue;
         Entity entity;
         for (int i = 0; i < length; ++i)
         {
             entity = entities.get(i);
             body = ComponentMappers.PHYSIC.get(entity).body;
+            type = ComponentMappers.TYPE.get(entity).type;
+            if (type != GameObjectType.TYPE_PLAYER)
+            {
+                velocity = body.getLinearVelocity();
+                velocityValue = velocity.len();
+                if (velocityValue == 0)
+                {
+                    velocity.x = 10;
+                    velocity.rotate(MathUtils.random() * 360);
+                }
+                else if (velocityValue < 10) velocity.set(velocity.x * 1.03f, velocity.y * 1.03f);
+                body.setLinearVelocity(velocity);
+            }
             transform = ComponentMappers.TRANSFORM.get(entity);
             transform.position = body.getPosition().sub(transform.origin);
             transform.rotation = body.getAngle() * MathUtils.radiansToDegrees;
@@ -93,7 +110,8 @@ public class PhysicSystem extends EntitySystem implements EntityListener, Contac
                 world, typeComponent, viewComponent.getMainSprite().getWidth(),
                 transformComponent.position, transformComponent.rotation);
         body.setUserData(entity);
-        physicComponent.init(body);
+        physicComponent.setBody(body);
+        body.setLinearVelocity(physicComponent.startVelocity);
     }
 
     @Override

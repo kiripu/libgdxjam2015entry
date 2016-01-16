@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Input;
 import ru.kiripu.lifeinspace.enums.GameType;
 import ru.kiripu.lifeinspace.managers.GameMaster;
+import ru.kiripu.lifeinspace.managers.ObstaclesCreator;
 import ru.kiripu.lifeinspace.world.systems.*;
 
 /**
@@ -12,6 +13,7 @@ import ru.kiripu.lifeinspace.world.systems.*;
 public class GameWorld
 {
     private PooledEngine engine;
+    private ObstaclesCreator obstaclesCreator;
 
     public void init()
     {
@@ -27,13 +29,15 @@ public class GameWorld
 
         if (GameMaster.getInstance().getGameType() == GameType.SINGLE) createSingleGame();
         else if (GameMaster.getInstance().getGameType() == GameType.COOP) createCoopGame();
-        EntityFactory.createAsteroid(engine, 1, 100, 200, 35);
-        EntityFactory.createSafeCapsule(engine, 400, 300, 16);
+
+        obstaclesCreator = new ObstaclesCreator();
+        obstaclesCreator.init(engine);
     }
 
     public void update(float deltaTime)
     {
         engine.update(deltaTime);
+        obstaclesCreator.update(deltaTime);
     }
 
     public void dispose()

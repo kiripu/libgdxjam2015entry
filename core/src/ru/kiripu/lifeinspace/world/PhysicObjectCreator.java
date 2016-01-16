@@ -20,7 +20,7 @@ public class PhysicObjectCreator
 
     final private static short MASK_PLAYER = CATEGORY_ASTEROID | CATEGORY_SAFE_CUPSULE_CENTER | CATEGORY_PLAYER;
     final private static short MASK_ASTEROID = CATEGORY_PLAYER | CATEGORY_SAFE_CUPSULE;
-    final private static short MASK_SAFE_CAPSULE = CATEGORY_ASTEROID;
+    final private static short MASK_SAFE_CAPSULE = 0;
     final private static short MASK_SAFE_CAPSULE_CENTER = CATEGORY_PLAYER;
 
     private static BodyEditorLoader bodyEditorLoader;

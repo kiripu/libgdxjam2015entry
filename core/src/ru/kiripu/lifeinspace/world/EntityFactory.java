@@ -3,6 +3,7 @@ package ru.kiripu.lifeinspace.world;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.math.Vector2;
 import ru.kiripu.lifeinspace.enums.GameObjectType;
 import ru.kiripu.lifeinspace.enums.States;
 import ru.kiripu.lifeinspace.world.components.*;
@@ -13,27 +14,27 @@ import ru.kiripu.lifeinspace.world.data.OxygenModificator;
  */
 public class EntityFactory
 {
-    public static void createAsteroid(PooledEngine engine, int variance, float posX, float posY, float rot)
+    public static void createAsteroid(PooledEngine engine, int variance, Vector2 pos, Vector2 velocity, float rot)
     {
         TypeComponent typeComponent = engine.createComponent(TypeComponent.class).init(GameObjectType.TYPE_ASTEROID, variance);
         ViewComponent viewComponent = ObjectViewCreator.createSpriteViewComponent(engine, typeComponent);
         Entity entity = engine.createEntity();
-        entity.add(engine.createComponent(TransformComponent.class).init(posX, posY, rot));
+        entity.add(engine.createComponent(TransformComponent.class).init(pos.x, pos.y, rot));
         entity.add(typeComponent);
         entity.add(viewComponent);
-        entity.add(engine.createComponent(PhysicComponent.class));
+        entity.add(engine.createComponent(PhysicComponent.class).init(velocity));
         engine.addEntity(entity);
     }
 
-    public static void createSafeCapsule(PooledEngine engine, float posX, float posY, float rot)
+    public static void createSafeCapsule(PooledEngine engine, Vector2 pos, Vector2 velocity, float rot)
     {
         TypeComponent typeComponent = engine.createComponent(TypeComponent.class).init(GameObjectType.TYPE_SAFE_CAPSULE);
         ViewComponent viewComponent = ObjectViewCreator.createSpriteViewComponent(engine, typeComponent);
         Entity entity = engine.createEntity();
-        entity.add(engine.createComponent(TransformComponent.class).init(posX, posY, rot));
+        entity.add(engine.createComponent(TransformComponent.class).init(pos.x, pos.y, rot));
         entity.add(typeComponent);
         entity.add(viewComponent);
-        entity.add(engine.createComponent(PhysicComponent.class));
+        entity.add(engine.createComponent(PhysicComponent.class).init(velocity));
         entity.add(engine.createComponent(StateComponent.class).init(States.STATE_FREE));
         engine.addEntity(entity);
     }

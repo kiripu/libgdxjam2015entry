@@ -48,6 +48,7 @@ public class CollisionSystem extends IteratingSystem {
             stateComponent.state = States.STATE_BUSY;
             Body playerBody = ComponentMappers.PHYSIC.get(playerEntity).body;
             Body safeCapsuleBody = ComponentMappers.PHYSIC.get(otherEntity).body;
+            playerBody.getFixtureList().get(0).setSensor(true);
 
             Vector2 posDiff = playerBody.getWorldCenter().sub(playerBody.getPosition()).cpy();
             playerBody.setTransform(safeCapsuleBody.getWorldCenter().sub(posDiff), playerBody.getAngle());
@@ -80,6 +81,7 @@ public class CollisionSystem extends IteratingSystem {
         {
             playerEntity.remove(CapsuleControlComponent.class);
             stateComponent.state = States.STATE_FREE;
+            ComponentMappers.PHYSIC.get(playerEntity).body.getFixtureList().get(0).setSensor(false);
         }
     }
 }
