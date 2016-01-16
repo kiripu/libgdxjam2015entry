@@ -16,6 +16,7 @@ public class GameWorld
         engine.addSystem(new RenderSystem());
         engine.addSystem(new JetpackControlSystem());
         engine.addSystem(new TurnControlSystem());
+        engine.addSystem(new CapsuelControlSystem());
         engine.addSystem(new PhysicSystem());
         engine.addSystem(new CollisionSystem());
         engine.addSystem(new OxygenSystem());

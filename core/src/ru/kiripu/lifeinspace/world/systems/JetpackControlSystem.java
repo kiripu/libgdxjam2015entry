@@ -33,20 +33,29 @@ public class JetpackControlSystem extends IteratingSystem implements EntityListe
     @Override
     protected void processEntity(Entity entity, float deltaTime)
     {
-        Input input = Gdx.input;
         JetpackControlComponent jetpackControlComponent = ComponentMappers.JETPACK.get(entity);
-        Boolean isJetpackKeyActivated = input.isKeyPressed(jetpackControlComponent.jetpackActivateKey);
-
-        if (isJetpackKeyActivated)
+        if (jetpackControlComponent.isActive)
         {
-            Body body = ComponentMappers.PHYSIC.get(entity).body;
-            jetpackControlComponent.forceVector.setAngleRad(body.getAngle() + (float)Math.PI);
-            body.applyForceToCenter(jetpackControlComponent.forceVector, true);
-        }
+            Input input = Gdx.input;
+            Boolean isJetpackKeyActivated = input.isKeyPressed(jetpackControlComponent.jetpackActivateKey);
 
-        updateViewComponent(isJetpackKeyActivated, entity);
-        updateOxygenComponent(
-                isJetpackKeyActivated, entity, jetpackControlComponent);
+            if (isJetpackKeyActivated)
+            {
+                Body body = ComponentMappers.PHYSIC.get(entity).body;
+                jetpackControlComponent.forceVector.setAngleRad(body.getAngle() + (float)Math.PI);
+                body.applyForceToCenter(jetpackControlComponent.forceVector, true);
+            }
+
+            updateViewComponent(isJetpackKeyActivated, entity);
+            updateOxygenComponent(
+                    isJetpackKeyActivated, entity, jetpackControlComponent);
+        }
+        else if (jetpackControlComponent.jetpackIsActive)
+        {
+            updateViewComponent(false, entity);
+            updateOxygenComponent(
+                    false, entity, jetpackControlComponent);
+        }
     }
 
     private void updateOxygenComponent(
@@ -94,7 +103,5 @@ public class JetpackControlSystem extends IteratingSystem implements EntityListe
     @Override
     public void entityRemoved(Entity entity)
     {
-        updateOxygenComponent(false, entity, null);
-        updateViewComponent(false, entity);
     }
 }

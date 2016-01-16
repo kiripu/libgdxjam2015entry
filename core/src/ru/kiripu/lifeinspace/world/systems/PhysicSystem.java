@@ -109,13 +109,19 @@ public class PhysicSystem extends EntitySystem implements EntityListener, Contac
         Entity entityB = (Entity) contact.getFixtureB().getBody().getUserData();
         PooledEngine pooledEngine = (PooledEngine) engine;
 
-        entityA.add(pooledEngine.createComponent(CollisionComponent.class).init(entityB));
-        entityB.add(pooledEngine.createComponent(CollisionComponent.class).init(entityA));
+        entityA.add(pooledEngine.createComponent(CollisionComponent.class).init(entityB, true));
+        entityB.add(pooledEngine.createComponent(CollisionComponent.class).init(entityA, true));
     }
 
     @Override
-    public void endContact(Contact contact) {
+    public void endContact(Contact contact)
+    {
+        Entity entityA = (Entity) contact.getFixtureA().getBody().getUserData();
+        Entity entityB = (Entity) contact.getFixtureB().getBody().getUserData();
+        PooledEngine pooledEngine = (PooledEngine) engine;
 
+        entityA.add(pooledEngine.createComponent(CollisionComponent.class).init(entityB, false));
+        entityB.add(pooledEngine.createComponent(CollisionComponent.class).init(entityA, false));
     }
 
     @Override

@@ -2,6 +2,7 @@ package ru.kiripu.lifeinspace.world.systems;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
+import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.joints.WeldJointDef;
@@ -26,14 +27,19 @@ public class CollisionSystem extends IteratingSystem {
         CollisionComponent collisionComponent = ComponentMappers.COLLISION.get(entity);
         TypeComponent typeComponent = ComponentMappers.TYPE.get(entity);
 
-        if (typeComponent.type == GameObjectType.TYPE_PLAYER) processPlayerCollision(entity, collisionComponent.entity);
+        if (typeComponent.type == GameObjectType.TYPE_PLAYER)
+        {
+            if (collisionComponent.isBegin) processPlayerBeginCollision(entity, collisionComponent.entity);
+            else processPlayerEndCollision(entity, collisionComponent.entity);
+        }
         entity.remove(CollisionComponent.class);
     }
 
-    private static void processPlayerCollision(Entity playerEntity, Entity otherEntity)
+    private void processPlayerBeginCollision(Entity playerEntity, Entity otherEntity)
     {
         TypeComponent typeComponent = ComponentMappers.TYPE.get(otherEntity);
-        if (typeComponent.type == GameObjectType.TYPE_SAFE_CAPSULE)
+        CapsuleControlComponent capsuleControlComponent = ComponentMappers.CAPSULE_CONTROL.get(playerEntity);
+        if (typeComponent.type == GameObjectType.TYPE_SAFE_CAPSULE && capsuleControlComponent == null)
         {
             Body playerBody = ComponentMappers.PHYSIC.get(playerEntity).body;
             Body safeCapsuleBody = ComponentMappers.PHYSIC.get(otherEntity).body;
@@ -45,13 +51,29 @@ public class CollisionSystem extends IteratingSystem {
             jointDef.initialize(playerBody, safeCapsuleBody, safeCapsuleBody.getWorldCenter());
             safeCapsuleBody.getWorld().createJoint(jointDef);
 
-            playerEntity.remove(TurnControlComponent.class);
-            playerEntity.remove(JetpackControlComponent.class);
+            JetpackControlComponent jetpackControlComponent = ComponentMappers.JETPACK.get(playerEntity);
+            jetpackControlComponent.isActive = false;
+            TurnControlComponent turnControlComponent = ComponentMappers.CONTROL.get(playerEntity);
+            turnControlComponent.isActive = false;
+            PooledEngine engine = (PooledEngine) this.getEngine();
+            playerEntity.add(engine.createComponent(CapsuleControlComponent.class).init(jetpackControlComponent.jetpackActivateKey));
+
         }
         if (typeComponent.type == GameObjectType.TYPE_ASTEROID)
         {
             OxygenComponent oxygenComponent = ComponentMappers.OXYGEN.get(playerEntity);
             oxygenComponent.addModificator(OxygenModificator.createInstantAsteroidModificator());
+        }
+    }
+
+    private void processPlayerEndCollision(Entity playerEntity, Entity otherEntity)
+    {
+        TypeComponent typeComponent = ComponentMappers.TYPE.get(otherEntity);
+        CapsuleControlComponent capsuleControlComponent = ComponentMappers.CAPSULE_CONTROL.get(playerEntity);
+        if (typeComponent.type == GameObjectType.TYPE_SAFE_CAPSULE
+                && capsuleControlComponent != null && capsuleControlComponent.isExiting)
+        {
+            playerEntity.remove(CapsuleControlComponent.class);
         }
     }
 }

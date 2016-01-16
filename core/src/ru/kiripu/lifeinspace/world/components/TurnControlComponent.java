@@ -11,6 +11,7 @@ public class TurnControlComponent implements Component, Pool.Poolable {
     public int turnRightKey;
     public int turnLeftKey;
     public float turnValue;
+    public Boolean isActive;
 
     @Override
     public void reset() {
@@ -24,6 +25,7 @@ public class TurnControlComponent implements Component, Pool.Poolable {
         this.turnRightKey = turnRightKey;
         this.turnLeftKey = turnLeftKey;
         this.turnValue = turnValue;
+        isActive = true;
         return this;
     }
 }

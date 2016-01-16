@@ -23,13 +23,16 @@ public class TurnControlSystem extends IteratingSystem {
     @Override
     protected void processEntity(Entity entity, float deltaTime)
     {
-        Body body = ComponentMappers.PHYSIC.get(entity).body;
         TurnControlComponent turnControlComponent = ComponentMappers.CONTROL.get(entity);
-        Input input = Gdx.input;
-        float angularVelocity = 0f;
+        if (turnControlComponent.isActive)
+        {
+            Body body = ComponentMappers.PHYSIC.get(entity).body;
+            Input input = Gdx.input;
+            float angularVelocity = 0f;
 
-        if (input.isKeyPressed(turnControlComponent.turnLeftKey)) angularVelocity += turnControlComponent.turnValue;
-        if (input.isKeyPressed(turnControlComponent.turnRightKey)) angularVelocity += -turnControlComponent.turnValue;
-        body.setAngularVelocity(angularVelocity);
+            if (input.isKeyPressed(turnControlComponent.turnLeftKey)) angularVelocity += turnControlComponent.turnValue;
+            if (input.isKeyPressed(turnControlComponent.turnRightKey)) angularVelocity += -turnControlComponent.turnValue;
+            body.setAngularVelocity(angularVelocity);
+        }
     }
 }

@@ -10,10 +10,12 @@ import com.badlogic.gdx.utils.Pool;
 public class CollisionComponent implements Component, Pool.Poolable
 {
     public Entity entity;
+    public Boolean isBegin;
 
-    public CollisionComponent init(Entity entity)
+    public CollisionComponent init(Entity entity, Boolean isBegin)
     {
         this.entity = entity;
+        this.isBegin = isBegin;
         return this;
     }
 
