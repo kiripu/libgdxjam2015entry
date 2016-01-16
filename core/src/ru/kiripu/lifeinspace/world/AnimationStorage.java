@@ -31,7 +31,7 @@ public class AnimationStorage {
         JsonValue child = map.get(objectName).get(animationName);
         TextureAtlas atlas = Main.assetsController.getTextureAtlas();
         Animation animation = new Animation(0.03f, atlas.findRegions(child.asString()));
-        animation.setPlayMode(Animation.PlayMode.LOOP);
+        animation.setPlayMode(playMode);
         return animation;
     }
 }
