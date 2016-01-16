@@ -34,4 +34,11 @@ public class GameMaster
     {
         return curOxygenProgress;
     }
+
+    public boolean gameOver()
+    {
+        return curOxygenProgress == 0;
+    }
+
+
 }

@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Timer;
 import ru.kiripu.lifeinspace.Main;
 import ru.kiripu.lifeinspace.enums.WindowType;
 import ru.kiripu.lifeinspace.factories.UIObjectFactory;
@@ -28,6 +29,7 @@ public class GameWorldScreen implements Screen {
     private final ProgressBar progressBar;
     private final Button soundButton;
     private boolean isPaused = false;
+    private boolean startShowGameOver = false;
 
     public GameWorldScreen()
     {
@@ -67,9 +69,19 @@ public class GameWorldScreen implements Screen {
         stage.act(delta);
         stage.draw();
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) && !isPaused)
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) && !isPaused && !GameMaster.getInstance().gameOver())
         {
             Main.game.pause();
+        }
+        if (GameMaster.getInstance().gameOver() && !startShowGameOver)
+        {
+            startShowGameOver = true;
+            Timer.schedule(new Timer.Task() {
+                @Override
+                public void run() {
+                  WindowFactory.createWindow(stage, WindowType.GAME_OVER);
+                }
+            }, 2);
         }
     }
 
