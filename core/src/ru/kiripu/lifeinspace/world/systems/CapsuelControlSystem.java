@@ -44,22 +44,12 @@ public class CapsuelControlSystem extends IteratingSystem implements EntityListe
         {
             capsuleControlComponent.isExiting = true;
             Body body = ComponentMappers.PHYSIC.get(entity).body;
+            Vector2 impulseVector = new Vector2(-10000, 0);
+            impulseVector.rotateRad(body.getAngle());
             body.getWorld().destroyJoint(body.getJointList().get(0).joint);
-            body.applyLinearImpulse(new Vector2(10000, 0), body.getWorldCenter(), true);
+            body.applyLinearImpulse(impulseVector, body.getWorldCenter(), true);
             ComponentMappers.CONTROL.get(entity).isActive = true;
             ComponentMappers.JETPACK.get(entity).isActive = true;
-        }
-    }
-
-
-    private void updateViewComponent(
-            Boolean isJetpackKeyPressed,
-            Entity entity)
-    {
-        ViewComponent viewComponent = ComponentMappers.VIEW.get(entity);
-        if (viewComponent != null)
-        {
-            viewComponent.spritesVisibility.set(0, isJetpackKeyPressed);
         }
     }
 
