@@ -16,7 +16,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import net.dermetfan.gdx.graphics.g2d.AnimatedSprite;
 import ru.kiripu.lifeinspace.Main;
+import ru.kiripu.lifeinspace.enums.GameType;
 import ru.kiripu.lifeinspace.factories.UIObjectFactory;
+import ru.kiripu.lifeinspace.managers.GameMaster;
 
 /**
  * Created by kiripu on 26.12.2015.
@@ -79,10 +81,14 @@ public class MainMenu implements Screen
                 Actor targetActor = event.getTarget();
                 if (targetActor == onePlayerButton)
                 {
-                    System.out.println("onePlayerButton");
+                    GameMaster.getInstance().setGameType(GameType.SINGLE);
                     Main.game.setScreen(new GameWorldScreen());
                 }
-                else if (targetActor == twoPlayersButton) System.out.println("twoPlayersButton");
+                else if (targetActor == twoPlayersButton)
+                {
+                    GameMaster.getInstance().setGameType(GameType.COOP);
+                    Main.game.setScreen(new GameWorldScreen());
+                }
                 else if (targetActor == topSurvivors) System.out.println("topSurvivors");
             }
         };
