@@ -9,14 +9,14 @@ import ru.kiripu.lifeinspace.world.data.OxygenModificator;
  * Created by kiripu on 16.01.2016.
  */
 public class OxygenComponent implements Component, Pool.Poolable {
-    public float curOxygenValue;
-    public float maxOxygenValue;
+    public static float curOxygenValue = 0;
+    public static float maxOxygenValue;
     private Array<OxygenModificator> permanentModificators;
 
     public OxygenComponent init(float oxygenValue)
     {
-        this.curOxygenValue = oxygenValue;
-        this.maxOxygenValue = oxygenValue;
+        this.curOxygenValue += oxygenValue;
+        this.maxOxygenValue += oxygenValue;
         this.permanentModificators = new Array<OxygenModificator>();
         return this;
     }
