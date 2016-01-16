@@ -1,6 +1,7 @@
 package ru.kiripu.lifeinspace.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -8,7 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import ru.kiripu.lifeinspace.enums.WindowType;
 import ru.kiripu.lifeinspace.factories.UIObjectFactory;
+import ru.kiripu.lifeinspace.factories.WindowFactory;
 import ru.kiripu.lifeinspace.managers.GameMaster;
 import ru.kiripu.lifeinspace.world.GameWorld;
 
@@ -61,6 +64,11 @@ public class GameWorldScreen implements Screen {
         world.update(delta);
         stage.act(delta);
         stage.draw();
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE))
+        {
+            WindowFactory.createWindow(stage, WindowType.GAME_OVER);
+        }
     }
 
     @Override

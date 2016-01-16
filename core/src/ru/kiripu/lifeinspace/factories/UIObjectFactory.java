@@ -1,9 +1,10 @@
 package ru.kiripu.lifeinspace.factories;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import ru.kiripu.lifeinspace.Main;
 
@@ -34,9 +35,15 @@ public class UIObjectFactory
 
     public static Image createImage(String name)
     {
-        Image image = new Image(getAtlas().createSprite(UI_PATH + name));
+        Image image = new Image(createSprite(name, UI_PATH));
         image.setName(name);
         return image;
+    }
+
+    public static Sprite createSprite(String name, String path)
+    {
+        path = (path == null) ? UI_PATH : path;
+        return getAtlas().createSprite(path + name);
     }
 
     public static ProgressBar createProgressBar(String name)
@@ -49,6 +56,41 @@ public class UIObjectFactory
         progressBar.setName(name);
         return progressBar;
     }
+
+    public static TextField createTextField(String text, BitmapFont bitmapFont, int size)
+    {
+        float lineHeight = bitmapFont.getData().lineHeight;
+        if (Math.abs(lineHeight - size) > 1)
+        {
+            float scale = size / bitmapFont.getData().lineHeight;
+            bitmapFont.getData().setScale(scale);
+        }
+
+        TextField.TextFieldStyle textFieldStyle = new TextField.TextFieldStyle();
+        textFieldStyle.font = bitmapFont;
+        textFieldStyle.fontColor = Color.WHITE;
+        TextField textField = new TextField(text, textFieldStyle);
+        return textField;
+    }
+
+    public static Label createLabel(String text, BitmapFont bitmapFont, int size)
+    {
+        float lineHeight = bitmapFont.getData().lineHeight;
+        if (Math.abs(lineHeight - size) > 1)
+        {
+            float scale = size / bitmapFont.getData().lineHeight;
+            bitmapFont.getData().setScale(scale);
+        }
+
+        Label.LabelStyle labelStyle = new Label.LabelStyle();
+        labelStyle.font = bitmapFont;
+        labelStyle.fontColor = Color.WHITE;
+
+        Label label = new Label(text, labelStyle);
+        return label;
+    }
+
+
 
     private static TextureAtlas getAtlas()
     {
