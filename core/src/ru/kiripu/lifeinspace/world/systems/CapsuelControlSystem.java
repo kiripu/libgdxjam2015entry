@@ -7,6 +7,7 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import net.dermetfan.gdx.graphics.g2d.AnimatedSprite;
@@ -58,7 +59,8 @@ public class CapsuelControlSystem extends IteratingSystem implements EntityListe
     {
         ViewComponent viewComponent = ComponentMappers.VIEW.get(entity);
         ((AnimatedSprite)viewComponent.getMainSprite()).setAnimation(
-                AnimationStorage.getInstance().getAnimation("hero", "safe"));
+                AnimationStorage.getInstance().
+                        getAnimation("hero", "safe", Animation.PlayMode.LOOP));
 
         OxygenComponent oxygenComponent = ComponentMappers.OXYGEN.get(entity);
         oxygenComponent.addModificator(OxygenModificator.PERMANENT_SAFE_CAPSUEL_USE);
@@ -69,7 +71,8 @@ public class CapsuelControlSystem extends IteratingSystem implements EntityListe
     {
         ViewComponent viewComponent = ComponentMappers.VIEW.get(entity);
         ((AnimatedSprite)viewComponent.getMainSprite()).setAnimation(
-                AnimationStorage.getInstance().getAnimation("hero", "idle"));
+                AnimationStorage.getInstance().
+                        getAnimation("hero", "idle", Animation.PlayMode.LOOP));
 
         OxygenComponent oxygenComponent = ComponentMappers.OXYGEN.get(entity);
         oxygenComponent.removeModificator(OxygenModificator.PERMANENT_SAFE_CAPSUEL_USE);

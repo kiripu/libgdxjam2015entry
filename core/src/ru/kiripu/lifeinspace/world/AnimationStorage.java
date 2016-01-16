@@ -26,7 +26,7 @@ public class AnimationStorage {
         return _instance;
     }
 
-    public Animation getAnimation(String objectName, String animationName)
+    public Animation getAnimation(String objectName, String animationName, Animation.PlayMode playMode)
     {
         JsonValue child = map.get(objectName).get(animationName);
         TextureAtlas atlas = Main.assetsController.getTextureAtlas();

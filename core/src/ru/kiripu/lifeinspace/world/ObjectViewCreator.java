@@ -1,6 +1,7 @@
 package ru.kiripu.lifeinspace.world;
 
 import com.badlogic.ashley.core.PooledEngine;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import net.dermetfan.gdx.graphics.g2d.AnimatedSprite;
@@ -43,11 +44,13 @@ public class ObjectViewCreator
     {
         ViewComponent viewComponent = engine.createComponent(ViewComponent.class).init();
 
-        AnimatedSprite sprite = new AnimatedSprite(AnimationStorage.getInstance().getAnimation("oxygenRay", "idle"));
+        AnimatedSprite sprite = new AnimatedSprite(AnimationStorage.getInstance().
+                getAnimation("oxygenRay", "idle", Animation.PlayMode.LOOP));
         sprite.setOrigin(0, 0);
         addDataToViewComponent(viewComponent, sprite, false, new Vector2(35, 18));
 
-        sprite = new AnimatedSprite(AnimationStorage.getInstance().getAnimation("hero", "idle"));
+        sprite = new AnimatedSprite(AnimationStorage.getInstance().
+                getAnimation("hero", "idle", Animation.PlayMode.LOOP));
         sprite.setOrigin(0, 0);
         addDataToViewComponent(viewComponent, sprite, true, null);
 
