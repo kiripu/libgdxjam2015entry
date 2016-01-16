@@ -1,7 +1,10 @@
 {
   "hero":
   {
-    "idle": "hero/idle"
+    "idle": "hero/idle",
+    "safe": "hero/safe",
+    "dead": "hero/dead",
+    "die": "hero/die"
   },
   "oxygenRay":
   {
