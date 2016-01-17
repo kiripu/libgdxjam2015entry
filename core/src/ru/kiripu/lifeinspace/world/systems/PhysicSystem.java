@@ -2,14 +2,12 @@ package ru.kiripu.lifeinspace.world.systems;
 
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import ru.kiripu.lifeinspace.Main;
 import ru.kiripu.lifeinspace.enums.GameObjectType;
-import ru.kiripu.lifeinspace.world.BodyEditorLoader;
 import ru.kiripu.lifeinspace.world.ComponentMappers;
 import ru.kiripu.lifeinspace.world.PhysicObjectCreator;
 import ru.kiripu.lifeinspace.world.components.*;
@@ -20,7 +18,6 @@ import ru.kiripu.lifeinspace.world.components.*;
 public class PhysicSystem extends EntitySystem implements EntityListener, ContactListener
 {
     private Engine engine;
-    private BodyEditorLoader bodyEditorLoader;
     private World world;
     private Box2DDebugRenderer debugRenderer;
 
@@ -34,7 +31,6 @@ public class PhysicSystem extends EntitySystem implements EntityListener, Contac
         world = new World(new Vector2(0, 0), true);
         world.setContactListener(this);
         debugRenderer = new Box2DDebugRenderer();
-        bodyEditorLoader = new BodyEditorLoader(Gdx.files.internal("physics/liveInSpace"));
 
         family = Family.all(PhysicComponent.class, TransformComponent.class).get();
 
@@ -63,8 +59,6 @@ public class PhysicSystem extends EntitySystem implements EntityListener, Contac
     @Override
     public void update(float deltaTime)
     {
-        debugCamera.update();
-        Main.batch.setProjectionMatrix(debugCamera.combined);
         debugRenderer.render(world, debugCamera.combined);
         world.step(deltaTime, 6, 2);
 
@@ -82,15 +76,19 @@ public class PhysicSystem extends EntitySystem implements EntityListener, Contac
             type = ComponentMappers.TYPE.get(entity).type;
             if (type != GameObjectType.TYPE_PLAYER)
             {
-                velocity = body.getLinearVelocity();
+                velocity = body.getLinearVelocity().cpy();
                 velocityValue = velocity.len();
                 if (velocityValue == 0)
                 {
                     velocity.x = 10;
                     velocity.rotate(MathUtils.random() * 360);
+                    body.setLinearVelocity(velocity);
                 }
-                else if (velocityValue < 10) velocity.set(velocity.x * 1.03f, velocity.y * 1.03f);
-                body.setLinearVelocity(velocity);
+                else if (velocityValue < 10)
+                {
+                    velocity.set(velocity.x * 1.03f, velocity.y * 1.03f);
+                    body.setLinearVelocity(velocity);
+                }
             }
             transform = ComponentMappers.TRANSFORM.get(entity);
             transform.position = body.getPosition().sub(transform.origin);

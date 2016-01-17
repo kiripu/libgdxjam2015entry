@@ -3,8 +3,8 @@ package ru.kiripu.lifeinspace.world.systems;
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import ru.kiripu.lifeinspace.Main;
 import ru.kiripu.lifeinspace.world.ComponentMappers;
 import ru.kiripu.lifeinspace.world.components.StateComponent;
 import ru.kiripu.lifeinspace.world.components.TransformComponent;
@@ -15,6 +15,7 @@ import ru.kiripu.lifeinspace.world.components.ViewComponent;
  */
 public class RenderSystem extends EntitySystem implements EntityListener
 {
+    private final SpriteBatch batch;
     private Engine engine;
     private Family family;
     private ImmutableArray<Entity> entities;
@@ -22,6 +23,7 @@ public class RenderSystem extends EntitySystem implements EntityListener
     public RenderSystem()
     {
         family = Family.all(TransformComponent.class, ViewComponent.class).get();
+        batch = new SpriteBatch();
     }
 
     @Override
@@ -43,6 +45,7 @@ public class RenderSystem extends EntitySystem implements EntityListener
     @Override
     public void update(float deltaTime)
     {
+        batch.begin();
         int length = entities.size();
         Entity entity;
         TransformComponent transform;
@@ -66,11 +69,12 @@ public class RenderSystem extends EntitySystem implements EntityListener
                     offset = viewComponent.offset.get(j);
                     sprite.setPosition(transform.getPositionX(offset), transform.getPositionY(offset));
                     sprite.setRotation(transform.getRotation());
-                    sprite.draw(Main.batch);
+                    sprite.draw(batch);
                 }
             }
 
         }
+        batch.end();
     }
 
     @Override

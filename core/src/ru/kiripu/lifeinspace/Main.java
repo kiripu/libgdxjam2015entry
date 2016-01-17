@@ -3,7 +3,6 @@ package ru.kiripu.lifeinspace;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -15,7 +14,6 @@ public class Main extends Game
 	public static Game game;
 	public static int width;
 	public static int height;
-	public static OrthographicCamera camera;
 	public static AssetsController assetsController;
 
 	public static SpriteBatch batch;
@@ -28,9 +26,6 @@ public class Main extends Game
 	{
 		width = Gdx.graphics.getWidth();
 		height = Gdx.graphics.getHeight();
-		camera = new OrthographicCamera(width, height);
-		camera.translate(width * 0.5f, height * 0.5f);
-		camera.update();
 		game = this;
 
 		assetsController = new AssetsController();
@@ -49,9 +44,6 @@ public class Main extends Game
 	@Override
 	public void render ()
 	{
-		camera.update();
-		batch.setProjectionMatrix(camera.combined);
-
 		float deltaTime = Gdx.graphics.getDeltaTime();
 		float fastForwardTime = 2f;
 		if ((curTime += deltaTime) < fastForwardTime)
@@ -66,8 +58,10 @@ public class Main extends Game
 		batch.begin();
 		batch.draw(backgroundImage, 0, 0);
 		pe.draw(batch);
-		super.render();
 		batch.end();
+
+		super.render();
+
 
 
 		if (pe.isComplete()) pe.reset();
