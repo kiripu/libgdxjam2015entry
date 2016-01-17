@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import ru.kiripu.lifeinspace.managers.AssetsController;
+import ru.kiripu.lifeinspace.managers.LocalDataStorage;
 import ru.kiripu.lifeinspace.screens.MainMenu;
 
 public class Main extends Game
@@ -15,6 +16,7 @@ public class Main extends Game
 	public static int width;
 	public static int height;
 	public static AssetsController assetsController;
+	private static LocalDataStorage localDataStorage;
 
 	public static SpriteBatch batch;
 	private Texture backgroundImage;
@@ -30,6 +32,8 @@ public class Main extends Game
 
 		assetsController = new AssetsController();
 		assetsController.init();
+
+		localDataStorage = new LocalDataStorage();
 
 		batch = new SpriteBatch();
 		backgroundImage = new Texture("background.png");
