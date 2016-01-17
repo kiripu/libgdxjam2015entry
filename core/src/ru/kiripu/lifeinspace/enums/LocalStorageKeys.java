@@ -5,4 +5,5 @@ package ru.kiripu.lifeinspace.enums;
  */
 public class LocalStorageKeys {
     public static String TUTORIAL_HIDED = "tutorialHided_";
+    public static String GAME_TIME = "gameTime_";
 }

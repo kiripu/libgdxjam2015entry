@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import ru.kiripu.lifeinspace.Main;
 import ru.kiripu.lifeinspace.enums.BitmapFonts;
+import ru.kiripu.lifeinspace.enums.LocalStorageKeys;
 import ru.kiripu.lifeinspace.factories.UIObjectFactory;
 import ru.kiripu.lifeinspace.managers.GameMaster;
 import ru.kiripu.lifeinspace.screens.GameWorldScreen;
@@ -30,6 +31,19 @@ public class GameOverWindow {
 
     public GameOverWindow(Stage stage)
     {
+        int savedGameTime = Main.localDataStorage.getInt(LocalStorageKeys.GAME_TIME + GameMaster.getInstance().getGameType());
+        int curGameTime = (int) GameMaster.getInstance().getGameTime();
+        boolean newRecord = false;
+        if (savedGameTime < curGameTime)
+        {
+            newRecord = true;
+            Main.localDataStorage.saveInt(LocalStorageKeys.GAME_TIME + GameMaster.getInstance().getGameType(), curGameTime);
+        }
+        int min = curGameTime / 60;
+        int sec = curGameTime % 60;
+        String minString = (min < 10) ? "0" + min : "" + min;
+        String secString = (sec < 10) ? "0" + sec : "" + sec;
+
         stage.getActors().peek().setTouchable(Touchable.disabled);
         table = new Table();
         table.setFillParent(true);
@@ -39,7 +53,7 @@ public class GameOverWindow {
         table.padTop(200);
 
         title = UIObjectFactory.createImage("youDied_label");
-        timeLabel = UIObjectFactory.createLabel("You survived: " + GameMaster.getInstance().getGameTime(), BitmapFonts.OLIVER, 20);
+        timeLabel = UIObjectFactory.createLabel("You survived: " + minString + ":" + secString, BitmapFonts.OLIVER, 20);
         record = UIObjectFactory.createImage("newRecord_label");
         enterNameLabel = UIObjectFactory.createLabel("Enter your name:", BitmapFonts.OLIVER, 20);
         enterNameField = UIObjectFactory.createTextField("ASDAS", BitmapFonts.OLIVER, 20);
@@ -60,7 +74,7 @@ public class GameOverWindow {
         stage.addActor(table);
 
         // hide all record relative graphics
-        record.setVisible(false);
+        record.setVisible(newRecord);
         enterNameLabel.setVisible(false);
         enterNameField.setVisible(false);
 
@@ -71,6 +85,7 @@ public class GameOverWindow {
                 Actor targetActor = event.getTarget();
                 if (targetActor == playAgainButton)
                 {
+                    GameMaster.getInstance().init(GameMaster.getInstance().getGameType());
                     Main.game.getScreen().dispose();
                     Main.game.setScreen(new GameWorldScreen());
                 }

@@ -14,9 +14,9 @@ public class LocalDataStorage {
         preferences = Gdx.app.getPreferences(storageName);
     }
 
-    public void saveString(String key, String data)
+    public void saveInt(String key, int data)
     {
-        preferences.putString(key, data);
+        preferences.putInteger(key, data);
         preferences.flush();
     }
 
@@ -26,6 +26,6 @@ public class LocalDataStorage {
         preferences.flush();
     }
 
-    public String getString(String key) { return preferences.getString(key); }
+    public int getInt(String key) { return preferences.getInteger(key); }
     public Boolean getBoolean(String key) { return preferences.getBoolean(key); }
 }

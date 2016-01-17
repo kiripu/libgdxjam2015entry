@@ -37,13 +37,9 @@ public class GameMaster
         return curOxygenProgress;
     }
 
-    public String getGameTime()
+    public float getGameTime()
     {
-        int min = (int) gameTime / 60;
-        int sec = (int) gameTime % 60;
-        String minString = (min < 10) ? "0" + min : "" + min;
-        String secString = (sec < 10) ? "0" + sec : "" + sec;
-        return minString + ":" + secString;
+       return gameTime;
     }
 
     public void updateGameTime(float deltaTime)
