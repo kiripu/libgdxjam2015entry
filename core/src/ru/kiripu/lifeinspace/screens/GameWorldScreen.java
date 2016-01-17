@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -29,7 +30,6 @@ public class GameWorldScreen implements Screen {
     private final Image progressBarLabel;
     private final ProgressBar progressBar;
     private final Button soundButton;
-    private boolean isPaused = false;
     private boolean startShowGameOver = false;
 
     public GameWorldScreen()
@@ -44,6 +44,7 @@ public class GameWorldScreen implements Screen {
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
         table = new Table();
+        table.setTouchable(Touchable.enabled);
 
         table.setFillParent(true);
         table.bottom();
@@ -75,19 +76,23 @@ public class GameWorldScreen implements Screen {
         stage.act(delta);
         stage.draw();
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) && !isPaused && !gm.gameOver())
+        boolean screenIsActive = table.isTouchable();
+        if (screenIsActive)
         {
-            Main.game.pause();
-        }
-        if (gm.gameOver() && !startShowGameOver)
-        {
-            startShowGameOver = true;
-            Timer.schedule(new Timer.Task() {
-                @Override
-                public void run() {
-                  WindowFactory.createWindow(stage, WindowType.GAME_OVER);
-                }
-            }, 4);
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) && !gm.gameOver())
+            {
+                Main.game.pause();
+            }
+            if (gm.gameOver() && !startShowGameOver)
+            {
+                startShowGameOver = true;
+                Timer.schedule(new Timer.Task() {
+                    @Override
+                    public void run() {
+                        WindowFactory.createWindow(stage, WindowType.GAME_OVER);
+                    }
+                }, 4);
+            }
         }
     }
 
