@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import ru.kiripu.lifeinspace.world.ComponentMappers;
-import ru.kiripu.lifeinspace.world.components.StateComponent;
 import ru.kiripu.lifeinspace.world.components.TransformComponent;
 import ru.kiripu.lifeinspace.world.components.ViewComponent;
 
@@ -50,7 +49,6 @@ public class RenderSystem extends EntitySystem implements EntityListener
         Entity entity;
         TransformComponent transform;
         ViewComponent viewComponent;
-        StateComponent stateComponent;
         Sprite sprite;
         Boolean isSpriteVisible;
         Vector2 offset;
@@ -59,7 +57,6 @@ public class RenderSystem extends EntitySystem implements EntityListener
             entity = entities.get(i);
             transform = ComponentMappers.TRANSFORM.get(entity);
             viewComponent = ComponentMappers.VIEW.get(entity);
-            stateComponent = ComponentMappers.STATE.get(entity);
             for (int j = 0; j < viewComponent.sprites.size; j++)
             {
                 isSpriteVisible = viewComponent.spritesVisibility.get(j);
