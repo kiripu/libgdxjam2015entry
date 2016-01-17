@@ -39,7 +39,7 @@ public class ObstaclesCreator
 
     private void generateNextSpawnDelay()
     {
-        spawnTime = curTime + 3;
+        spawnTime = curTime + 10;
     }
 
     private void spawn()
