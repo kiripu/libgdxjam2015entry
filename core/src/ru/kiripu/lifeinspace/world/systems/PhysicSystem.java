@@ -94,8 +94,10 @@ public class PhysicSystem extends EntitySystem implements EntityListener, Contac
             transform.position = body.getPosition().sub(transform.origin);
             transform.rotation = body.getAngle() * MathUtils.radiansToDegrees;
 
-            if (transform.position.x < -60 || transform.position.x > 860
-                    || transform.position.y < -60 || transform.position.y > 660) engine.removeEntity(entity);
+
+            int screenOffset = (type == GameObjectType.TYPE_PLAYER) ? 50 : 0;
+            if (transform.position.x < -screenOffset || transform.position.x > 800 + screenOffset
+                    || transform.position.y < -screenOffset || transform.position.y > 600 + screenOffset) engine.removeEntity(entity);
         }
     }
 
@@ -119,7 +121,8 @@ public class PhysicSystem extends EntitySystem implements EntityListener, Contac
     @Override
     public void entityRemoved(Entity entity)
     {
-
+        Body body = ComponentMappers.PHYSIC.get(entity).body;
+        world.destroyBody(body);
     }
 
     @Override
