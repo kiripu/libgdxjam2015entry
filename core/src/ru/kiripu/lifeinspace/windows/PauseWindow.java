@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import ru.kiripu.lifeinspace.Main;
 import ru.kiripu.lifeinspace.factories.UIObjectFactory;
+import ru.kiripu.lifeinspace.managers.GameTimeController;
 import ru.kiripu.lifeinspace.screens.MainMenu;
 
 /**
@@ -26,6 +27,7 @@ public class PauseWindow {
 
     public PauseWindow(final Stage stage)
     {
+        GameTimeController.getInstance().setTimeModifer(0);
         stage.getActors().peek().setTouchable(Touchable.disabled);
         table = new Table();
         table.setDebug(true);
@@ -57,6 +59,7 @@ public class PauseWindow {
                     table.remove();
                     stage.getActors().peek().setTouchable(Touchable.enabled);
                     Main.game.resume();
+                    GameTimeController.getInstance().setTimeModifer(1);
                 }
                 else if (targetActor == mainMenuButton)
                 {

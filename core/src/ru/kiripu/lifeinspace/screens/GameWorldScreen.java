@@ -15,6 +15,7 @@ import ru.kiripu.lifeinspace.enums.WindowType;
 import ru.kiripu.lifeinspace.factories.UIObjectFactory;
 import ru.kiripu.lifeinspace.factories.WindowFactory;
 import ru.kiripu.lifeinspace.managers.GameMaster;
+import ru.kiripu.lifeinspace.managers.GameTimeController;
 import ru.kiripu.lifeinspace.world.GameWorld;
 
 /**
@@ -52,6 +53,8 @@ public class GameWorldScreen implements Screen {
         stage.addActor(table);
 
         progressBarLabel.addAction(Actions.forever(Actions.sequence(Actions.alpha(0.3f, 0.75f), Actions.alpha(1, 0.75f))));
+
+        GameTimeController.getInstance().setTimeModifer(1);
     }
 
     @Override
@@ -66,8 +69,9 @@ public class GameWorldScreen implements Screen {
         progressBar.setSize(380, 7);
         progressBar.setValue(gm.getOxygenProgress());
 
-        gm.updateGameTime(isPaused ? 0 : delta);
-        world.update(isPaused ? 0 : delta);
+        float timeModifer = GameTimeController.getInstance().getTimeModifer();
+        gm.updateGameTime(delta * timeModifer);
+        world.update(delta * timeModifer);
         stage.act(delta);
         stage.draw();
 
@@ -94,13 +98,11 @@ public class GameWorldScreen implements Screen {
 
     @Override
     public void pause() {
-        isPaused = true;
         WindowFactory.createWindow(stage, WindowType.PAUSE);
     }
 
     @Override
     public void resume() {
-        isPaused = false;
     }
 
     @Override
