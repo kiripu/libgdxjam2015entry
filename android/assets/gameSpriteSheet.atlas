@@ -2,7 +2,7 @@
 gameSpriteSheet.png
 size: 512,16
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Linear,Linear
 repeat: none
 effects/oxygenRay
   rotate: false
@@ -71,7 +71,7 @@ effects/oxygenRay
 gameSpriteSheet2.png
 size: 256,64
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Linear,Linear
 repeat: none
 gameObjects/asteroid_01
   rotate: false
@@ -112,7 +112,7 @@ gameObjects/safeCapsule
 gameSpriteSheet3.png
 size: 1024,1024
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Linear,Linear
 repeat: none
 hero/die_2
   rotate: false
@@ -293,7 +293,7 @@ hero/die_2
 gameSpriteSheet4.png
 size: 1024,1024
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Linear,Linear
 repeat: none
 hero/dead
   rotate: false
@@ -1097,7 +1097,7 @@ hero/safe
 gameSpriteSheet5.png
 size: 1024,256
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Linear,Linear
 repeat: none
 hero/dead
   rotate: false
@@ -1943,7 +1943,7 @@ hero/safe
 gameSpriteSheet6.png
 size: 1024,512
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Linear,Linear
 repeat: none
 ui/inputNameBack
   rotate: false
