@@ -67,5 +67,6 @@ public class OxygenSystem extends EntitySystem
                 }
             }
         }
+        else GameMaster.getInstance().setOxygenProgress(0);
     }
 }

@@ -59,7 +59,7 @@ public class PhysicSystem extends EntitySystem implements EntityListener, Contac
     @Override
     public void update(float deltaTime)
     {
-        debugRenderer.render(world, debugCamera.combined);
+//        debugRenderer.render(world, debugCamera.combined);
         world.step(deltaTime, 6, 2);
 
         int length = entities.size();
@@ -94,8 +94,8 @@ public class PhysicSystem extends EntitySystem implements EntityListener, Contac
             transform.position = body.getPosition().sub(transform.origin);
             transform.rotation = body.getAngle() * MathUtils.radiansToDegrees;
 
-            if (transform.position.x < -100 || transform.position.x > 900
-                    || transform.position.y < -100 || transform.position.y > 700) engine.removeEntity(entity);
+            if (transform.position.x < -60 || transform.position.x > 860
+                    || transform.position.y < -60 || transform.position.y > 660) engine.removeEntity(entity);
         }
     }
 
