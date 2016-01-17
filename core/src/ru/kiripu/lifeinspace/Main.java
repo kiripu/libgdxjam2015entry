@@ -16,7 +16,7 @@ public class Main extends Game
 	public static int width;
 	public static int height;
 	public static AssetsController assetsController;
-	private static LocalDataStorage localDataStorage;
+	public static LocalDataStorage localDataStorage;
 
 	public static SpriteBatch batch;
 	private Texture backgroundImage;
