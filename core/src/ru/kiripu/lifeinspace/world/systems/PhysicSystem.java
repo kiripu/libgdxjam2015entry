@@ -110,6 +110,7 @@ public class PhysicSystem extends EntitySystem implements EntityListener, Contac
         body.setUserData(entity);
         physicComponent.setBody(body);
         body.setLinearVelocity(physicComponent.startVelocity);
+        body.setAngularVelocity(MathUtils.random(-1, 1));
     }
 
     @Override
