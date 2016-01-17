@@ -33,6 +33,17 @@ public class UIObjectFactory
         return button;
     }
 
+    public static Button createCheckButton(String name)
+    {
+        Button.ButtonStyle buttonStyle = new Button.ButtonStyle();
+        buttonStyle.up = new SpriteDrawable(getAtlas().createSprite(UI_PATH + name + BUTTON_STATE_UP));
+        buttonStyle.checked = new SpriteDrawable(getAtlas().createSprite(UI_PATH + name + BUTTON_STATE_DOWN));
+        buttonStyle.over = new SpriteDrawable(getAtlas().createSprite(UI_PATH + name + BUTTON_STATE_HOVER));
+        Button button = new Button(buttonStyle);
+        button.setName(name);
+        return button;
+    }
+
     public static Image createImage(String name)
     {
         Image image = new Image(createSprite(name, UI_PATH));

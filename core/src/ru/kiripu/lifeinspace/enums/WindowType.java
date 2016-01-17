@@ -7,4 +7,5 @@ public class WindowType
 {
     public static final int GAME_OVER = 0;
     public static final int PAUSE = 1;
+    public static final int TUTORIAL = 2;
 }

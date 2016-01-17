@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Timer;
 import ru.kiripu.lifeinspace.Main;
+import ru.kiripu.lifeinspace.enums.LocalStorageKeys;
 import ru.kiripu.lifeinspace.enums.WindowType;
 import ru.kiripu.lifeinspace.factories.UIObjectFactory;
 import ru.kiripu.lifeinspace.factories.WindowFactory;
@@ -59,7 +60,10 @@ public class GameWorldScreen implements Screen {
     }
 
     @Override
-    public void show() {
+    public void show()
+    {
+        if (!Main.localDataStorage.getBoolean(LocalStorageKeys.TUTORIAL_HIDED + GameMaster.getInstance().getGameType()))
+            WindowFactory.createWindow(stage, WindowType.TUTORIAL);
 
     }
 
