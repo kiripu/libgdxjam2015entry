@@ -30,7 +30,6 @@ public class PauseWindow {
         GameTimeController.getInstance().setTimeModifer(0);
         stage.getActors().peek().setTouchable(Touchable.disabled);
         table = new Table();
-        table.setDebug(true);
         table.setFillParent(true);
         table.setSize(800, 600);
         table.setBackground(new SpriteDrawable(UIObjectFactory.createSprite("windowBack", null)));
