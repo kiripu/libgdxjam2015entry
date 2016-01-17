@@ -59,6 +59,11 @@ public class GameOverWindow {
         table.add(horizontalGroup).pad(20);
         stage.addActor(table);
 
+        // hide all record relative graphics
+        record.setVisible(false);
+        enterNameLabel.setVisible(false);
+        enterNameField.setVisible(false);
+
         inputListener = new ClickListener()
         {
             public void clicked(InputEvent event, float x, float y)
