@@ -93,6 +93,9 @@ public class PhysicSystem extends EntitySystem implements EntityListener, Contac
             transform = ComponentMappers.TRANSFORM.get(entity);
             transform.position = body.getPosition().sub(transform.origin);
             transform.rotation = body.getAngle() * MathUtils.radiansToDegrees;
+
+            if (transform.position.x < -100 || transform.position.x > 900
+                    || transform.position.y < -100 || transform.position.y > 700) engine.removeEntity(entity);
         }
     }
 
