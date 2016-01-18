@@ -3,13 +3,13 @@ package ru.kiripu.lifeinspace.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Timer;
 import ru.kiripu.lifeinspace.Main;
 import ru.kiripu.lifeinspace.enums.LocalStorageKeys;
@@ -31,6 +31,8 @@ public class GameWorldScreen implements Screen {
     private final Image progressBarLabel;
     private final ProgressBar progressBar;
     private final Button soundButton;
+    private final Button tutorialButton;
+    private final ClickListener inputListener;
     private boolean startShowGameOver = false;
 
     public GameWorldScreen()
@@ -41,6 +43,12 @@ public class GameWorldScreen implements Screen {
         progressBarLabel = UIObjectFactory.createImage("oxygenBar_label");
         progressBar = UIObjectFactory.createProgressBar("oxygenBar");
         soundButton = UIObjectFactory.createButton("soundButton");
+        tutorialButton = UIObjectFactory.createButton("tutorialButton");
+
+        HorizontalGroup horizontalGroup = new HorizontalGroup();
+        horizontalGroup.addActor(tutorialButton);
+        horizontalGroup.addActor(soundButton);
+        horizontalGroup.space(10);
 
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
@@ -51,12 +59,24 @@ public class GameWorldScreen implements Screen {
         table.bottom();
         table.add(progressBarLabel).padBottom(20).padLeft(150).bottom();
         table.add(progressBar).padBottom(20).padLeft(5).bottom();
-        table.add(soundButton).expand().bottom().right().pad(10);
+        table.add(horizontalGroup).expand().bottom().right().pad(10);
         stage.addActor(table);
 
         progressBarLabel.addAction(Actions.forever(Actions.sequence(Actions.alpha(0.3f, 0.75f), Actions.alpha(1, 0.75f))));
 
         GameTimeController.getInstance().setTimeModifer(1);
+
+        inputListener = new ClickListener()
+        {
+            public void clicked(InputEvent event, float x, float y)
+            {
+                Actor targetActor = event.getTarget();
+                if (targetActor == tutorialButton) WindowFactory.createWindow(stage, WindowType.TUTORIAL);
+            }
+        };
+
+        table.addListener(inputListener);
+
     }
 
     @Override

@@ -43,6 +43,10 @@ public class TutorialWindow {
         table.add(doNotShowCheckbox).padTop(20).row();
         stage.addActor(table);
 
+        boolean checkboxHided = Main.localDataStorage.getBoolean(
+                LocalStorageKeys.TUTORIAL_HIDED + GameMaster.getInstance().getGameType());
+        doNotShowCheckbox.setVisible(!checkboxHided);
+
         inputListener = new ClickListener()
         {
             public void clicked(InputEvent event, float x, float y)
