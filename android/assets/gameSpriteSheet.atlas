@@ -1968,7 +1968,7 @@ ui/doNotShowCheckbox_up
   index: -1
 ui/inputNameBack
   rotate: false
-  xy: 989, 1011
+  xy: 2, 2
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
@@ -2024,14 +2024,14 @@ ui/onePlayerButton_up
   index: -1
 ui/oxygenBar_back
   rotate: false
-  xy: 631, 557
+  xy: 713, 566
   size: 7, 7
   orig: 7, 7
   offset: 0, 0
   index: -1
 ui/oxygenBar_fill
   rotate: false
-  xy: 713, 566
+  xy: 804, 838
   size: 7, 7
   orig: 7, 7
   offset: 0, 0
@@ -2094,7 +2094,7 @@ ui/playButton_up
   index: -1
 ui/redRibbon
   rotate: false
-  xy: 804, 840
+  xy: 932, 968
   size: 5, 5
   orig: 5, 5
   offset: 0, 0
@@ -2141,6 +2141,13 @@ ui/soundButton_up
   orig: 41, 41
   offset: 0, 0
   index: -1
+ui/star
+  rotate: false
+  xy: 989, 1006
+  size: 15, 15
+  orig: 15, 15
+  offset: 0, 0
+  index: -1
 ui/title_MainMenu
   rotate: false
   xy: 2, 540
@@ -2171,7 +2178,7 @@ ui/topSurvivors_up
   index: -1
 ui/tutorialBack
   rotate: false
-  xy: 2, 2
+  xy: 187, 26
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
@@ -2227,7 +2234,7 @@ ui/twoPlayerButton_up
   index: -1
 ui/windowBack
   rotate: false
-  xy: 187, 26
+  xy: 631, 554
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
