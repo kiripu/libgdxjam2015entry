@@ -6,7 +6,7 @@ package ru.kiripu.lifeinspace.world.data;
 public class OxygenModificator
 {
     public static final OxygenModificator PERMANENT_DEFAULT = new OxygenModificator("default", -1, true);
-    public static final OxygenModificator PERMANENT_JETPACK_USE = new OxygenModificator("jetpack", -3, true);
+    public static final OxygenModificator PERMANENT_JETPACK_USE = new OxygenModificator("jetpack", -5, true);
     public static final OxygenModificator PERMANENT_SAFE_CAPSUEL_USE = new OxygenModificator("safeCapsule", 2, true);
 
     public String name;
