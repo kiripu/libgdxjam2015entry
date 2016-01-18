@@ -95,7 +95,7 @@ public class PhysicSystem extends EntitySystem implements EntityListener, Contac
             transform.rotation = body.getAngle() * MathUtils.radiansToDegrees;
 
 
-            int screenOffset = (type == GameObjectType.TYPE_PLAYER) ? 50 : 0;
+            int screenOffset = (type == GameObjectType.TYPE_PLAYER) ? 50 : 100;
             if (transform.position.x < -screenOffset || transform.position.x > 800 + screenOffset
                     || transform.position.y < -screenOffset || transform.position.y > 600 + screenOffset) engine.removeEntity(entity);
         }
