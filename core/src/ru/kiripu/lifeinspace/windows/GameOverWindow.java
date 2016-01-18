@@ -14,6 +14,7 @@ import ru.kiripu.lifeinspace.factories.UIObjectFactory;
 import ru.kiripu.lifeinspace.managers.GameMaster;
 import ru.kiripu.lifeinspace.screens.GameWorldScreen;
 import ru.kiripu.lifeinspace.screens.MainMenu;
+import ru.kiripu.lifeinspace.utils.TimeStringGenerator;
 
 /**
  * Created by kiripu on 16.01.2016.
@@ -39,10 +40,6 @@ public class GameOverWindow {
             newRecord = true;
             Main.localDataStorage.saveInt(LocalStorageKeys.GAME_TIME + GameMaster.getInstance().getGameType(), curGameTime);
         }
-        int min = curGameTime / 60;
-        int sec = curGameTime % 60;
-        String minString = (min < 10) ? "0" + min : "" + min;
-        String secString = (sec < 10) ? "0" + sec : "" + sec;
 
         stage.getActors().peek().setTouchable(Touchable.disabled);
         table = new Table();
@@ -53,7 +50,8 @@ public class GameOverWindow {
         table.padTop(200);
 
         title = UIObjectFactory.createImage("youDied_label");
-        timeLabel = UIObjectFactory.createLabel("You survived: " + minString + ":" + secString, BitmapFonts.OLIVER, 20);
+        timeLabel = UIObjectFactory.createLabel(
+                "You survived: " + TimeStringGenerator.generateTimeString(curGameTime), BitmapFonts.OLIVER, 20);
         record = UIObjectFactory.createImage("newRecord_label");
         enterNameLabel = UIObjectFactory.createLabel("Enter your name:", BitmapFonts.OLIVER, 20);
         enterNameField = UIObjectFactory.createTextField("ASDAS", BitmapFonts.OLIVER, 20);
